@@ -1,4 +1,4 @@
-package henu.servlet;
+ï»¿package henu.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,294 +23,295 @@ import net.sf.json.JSONObject;
  */
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public UserServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     * response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        action(request, response);
-    }
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 * response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		action(request, response);
+	}
 
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     * response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        action(request, response);
-    }
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 * response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		action(request, response);
+	}
 
-    /**
-     * action
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void action(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("application/json; charset=utf-8");
-        String method = request.getParameter("method");
-        if ("login".equals(method)) {
-            login(request, response);
-        } else if ("add".equals(method)) {
-            add(request, response);
-        } else if ("exit".equals(method)) {
-            exit(request, response);
-        } else if ("loginAdmin".equals(method)) {
-            loginAdmin(request, response);
-        } else if ("isLogin".equals(method)) {
-            isLogin(request, response);
-        } else if ("queryByUserID".equals(method)) {
-            queryByUserID(request, response);
-        } else if ("updateByUserID".equals(method)) {
-            updateByUserID(request, response);
-        } else if ("delete".equals(method)) {
-            delete(request, response);
-        }
-    }
+	/**
+	 * action
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void action(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
+		String method = request.getParameter("method");
+		if ("login".equals(method)) {
+			login(request, response);
+		} else if ("add".equals(method)) {
+			add(request, response);
+		} else if ("exit".equals(method)) {
+			exit(request, response);
+		} else if ("loginAdmin".equals(method)) {
+			loginAdmin(request, response);
+		} else if ("isLogin".equals(method)) {
+			isLogin(request, response);
+		} else if ("queryByUserID".equals(method)) {
+			queryByUserID(request, response);
+		} else if ("updateByUserID".equals(method)) {
+			updateByUserID(request, response);
+		} else if ("delete".equals(method)) {
+			delete(request, response);
+		}
+	}
 
-    /**
-     * ÓÃ»§µÇÂ¼ method=login json:{ "result":"true[µÇÂ½³É¹¦]/false[µÇÂ½Ê§°Ü]",
-     * "username":"[ÓÃ»§Ãû]","password":"[ÃÜÂë]", "userType":"[ÓÃ»§ÀàĞÍ£¨1£ºÂò¼Ò£»2£ºÂô¼Ò£»3£º¹ÜÀíÔ±£©]" }
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void login(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        JSONObject json = new JSONObject();
-        PrintWriter writer = response.getWriter();
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("application/json; charset=utf-8");
-        User user = new User(request.getParameter("username"), request.getParameter("password"), 0);
-        if (DaoFactory.getUserDaoImpl().login(user) == -1) {// µÇÂ½Ê§°Ü
-            json.put("result", false);
-        } else {// µÇÂ½³É¹¦
-            user = new User(user.getUserID(), user.getUserPassword(), DaoFactory.getUserDaoImpl().login(user));
-            System.out.println(user.getUserID());
-            json.put("result", true);
-            json.put("username", user.getUserID());
-            json.put("password", user.getUserPassword());
-            json.put("userType", user.getUserType());
-        }
-        writer.print(json);
+	/**
+	 * ç”¨æˆ·ç™»å½• method=login json:{ "result":"true[ç™»é™†æˆåŠŸ]/false[ç™»é™†å¤±è´¥]",
+	 * "username":"[ç”¨æˆ·å]","password":"[å¯†ç ]", "userType":"[ç”¨æˆ·ç±»å‹ï¼ˆ1ï¼šä¹°å®¶ï¼›2ï¼šå–å®¶ï¼›3ï¼šç®¡ç†å‘˜ï¼‰]" }
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void login(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		JSONObject json = new JSONObject();
+		PrintWriter writer = response.getWriter();
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
+		User user = new User(request.getParameter("username"), request.getParameter("password"), 0);
+		if (DaoFactory.getUserDaoImpl().login(user) == -1) {// ç™»é™†å¤±è´¥
+			json.put("result", false);
+		} else {// ç™»é™†æˆåŠŸ
+			HttpSession session = request.getSession();
+			session.setAttribute("userID", user.getUserID());
+			user = new User(user.getUserID(), user.getUserPassword(), DaoFactory.getUserDaoImpl().login(user));
+			System.out.println(user.getUserID());
+			json.put("result", true);
+			json.put("username", user.getUserID());
+			json.put("password", user.getUserPassword());
+			json.put("userType", user.getUserType());
+		}
+		writer.print(json);
 
-    }
+	}
 
-    /**
-     * ÓÃ»§×¢²á method=add Êä³öjson{" result":"true[×¢²á³É¹¦]/false[×¢²áÊ§°Ü£¨ÓÃ»§ÃûÒÑ¾­±»Ê¹ÓÃ£©]" }
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        User user = new User(request.getParameter("regist_username"), request.getParameter("regist_password"), 1);
-        UserInformation userInformation = new UserInformation();
-        userInformation.setUserID(user.getUserID());
-        userInformation.setUserAddress(request.getParameter("address"));
-        userInformation.setUserSex(Integer.parseInt(request.getParameter("gender")));
-        if (DaoFactory.getUserDaoImpl().queryByUserID(user.getUserID()) == null) {// ÓÃ»§ÃûÎ´±»×¢²á
-            DaoFactory.getUserDaoImpl().add(user);
-            DaoFactory.getUserInformationDaoImpl().add(userInformation);
-            json.put("result", true);
-        } else {// ÓÃ»§ÃûÒÑ±»×¢²á
-            json.put("result", false);
-        }
-        writer.print(json);
-    }
+	/**
+	 * ç”¨æˆ·æ³¨å†Œ method=add è¾“å‡ºjson{" result":"true[æ³¨å†ŒæˆåŠŸ]/false[æ³¨å†Œå¤±è´¥ï¼ˆç”¨æˆ·åå·²ç»è¢«ä½¿ç”¨ï¼‰]" }
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		User user = new User(request.getParameter("regist_username"), request.getParameter("regist_password"), 1);
+		UserInformation userInformation = new UserInformation();
+		userInformation.setUserID(user.getUserID());
+		userInformation.setUserAddress(request.getParameter("address"));
+		userInformation.setUserSex(Integer.parseInt(request.getParameter("gender")));
+		if (DaoFactory.getUserDaoImpl().queryByUserID(user.getUserID()) == null) {// ç”¨æˆ·åæœªè¢«æ³¨å†Œ
+			DaoFactory.getUserDaoImpl().add(user);
+			DaoFactory.getUserInformationDaoImpl().add(userInformation);
+			json.put("result", true);
+		} else {// ç”¨æˆ·åå·²è¢«æ³¨å†Œ
+			json.put("result", false);
+		}
+		writer.print(json);
+	}
 
-    /**
-     * ÍË³öµÇÂ¼ method=exit json{ "result":"true" }
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void exit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        session.setAttribute("isLogin", 0);
-        json.put("result", true);
-        writer.print(json);
-    }
+	/**
+	 * é€€å‡ºç™»å½• method=exit json{ "result":"true" }
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void exit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		session.setAttribute("isLogin", 0);
+		json.put("result", true);
+		writer.print(json);
+	}
 
-    /**
-     * ¹ÜÀíÔ±µÇÂ¼ Êä³öjson{"result":"true/false"}
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void loginAdmin(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        User loginUser = new User(request.getParameter("username"), request.getParameter("password"), 0);
-        int user = DaoFactory.getUserDaoImpl().login(loginUser);
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// ÉèÖÃÈÕÆÚ¸ñÊ½
-        JSONObject json = new JSONObject();
-        if (user != -1) {
-            if (user == 8) {
-                if (request.getParameter("remember") != null) {
-                    Cookie userID = new Cookie("userID", loginUser.getUserID());
-                    userID.setMaxAge(60 * 60);// cookie±£´æÊ±¼ä£¨Ãë£©
-                    response.addCookie(userID);
-                    Cookie userPassword = new Cookie("userPassword", loginUser.getUserPassword());
-                    userPassword.setMaxAge(60 * 60);
-                    response.addCookie(userPassword);
-                }
+	/**
+	 * ç®¡ç†å‘˜ç™»å½• è¾“å‡ºjson{"result":"true/false"}
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void loginAdmin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		User loginUser = new User(request.getParameter("username"), request.getParameter("password"), 0);
+		int user = DaoFactory.getUserDaoImpl().login(loginUser);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// è®¾ç½®æ—¥æœŸæ ¼å¼
+		JSONObject json = new JSONObject();
+		if (user != -1) {
+			if (user == 8) {
+				if (request.getParameter("remember") != null) {
+					Cookie userID = new Cookie("userID", loginUser.getUserID());
+					userID.setMaxAge(60 * 60);// cookieä¿å­˜æ—¶é—´ï¼ˆç§’ï¼‰
+					response.addCookie(userID);
+					Cookie userPassword = new Cookie("userPassword", loginUser.getUserPassword());
+					userPassword.setMaxAge(60 * 60);
+					response.addCookie(userPassword);
+				}
 
-                System.out.println(request.getParameter("username") + "µÇÂ¼¹ÜÀíÔ±ºóÌ¨ " + df.format(new Date()));
-                json.put("result", true);
-            } else {
-                System.out.println(request.getParameter("username") + "³¢ÊÔµÇÂ¼¹ÜÀíÔ±ºóÌ¨ " + df.format(new Date()));
-                json.put("result", false);
-            }
-        } else {
-            json.put("result", false);
-        }
-    }
+				System.out.println(request.getParameter("username") + "ç™»å½•ç®¡ç†å‘˜åå° " + df.format(new Date()));
+				json.put("result", true);
+			} else {
+				System.out.println(request.getParameter("username") + "å°è¯•ç™»å½•ç®¡ç†å‘˜åå° " + df.format(new Date()));
+				json.put("result", false);
+			}
+		} else {
+			json.put("result", false);
+		}
+	}
 
-    /**
-     * ÅĞ¶ÏÊÇ·ñµÇÂ¼ method=isLogin Êä³öjsonÊı¾İ{"isLogin":"true[ÒÑ¾­µÇÂ¼]/false[Î´µÇÂ¼]"}
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void isLogin(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        if (session.getAttribute("isLogin") == null) {
-            session.setAttribute("isLogin", 0);
-            json.put("isLogin", false);
-        } else {
-            if (Integer.parseInt(session.getAttribute("isLogin").toString()) == 0) {
-                json.put("isLogin", false);
-            } else {
-                json.put("isLogin", true);
-            }
-        }
-        writer.print(json);
-    }
+	/**
+	 * åˆ¤æ–­æ˜¯å¦ç™»å½• method=isLogin è¾“å‡ºjsonæ•°æ®{"isLogin":"true[å·²ç»ç™»å½•]/false[æœªç™»å½•]"}
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void isLogin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		if (session.getAttribute("isLogin") == null) {
+			session.setAttribute("isLogin", 0);
+			json.put("isLogin", false);
+		} else {
+			if (Integer.parseInt(session.getAttribute("isLogin").toString()) == 0) {
+				json.put("isLogin", false);
+			} else {
+				json.put("isLogin", true);
+			}
+		}
+		writer.print(json);
+	}
 
-    /**
-     * ¸ù¾İÓÃ»§id²éÑ¯ÓÃ»§ĞÅÏ¢(´«ÈëÓÃ»§id£¬Î´´«ÈëÊä³öjson:{"result":"false"}) json:{ "userID":"[ÓÃ»§id]",
-     * "userPassword":"[ÃÜÂë]", "userType":"[ÓÃ»§ÀàĞÍ]", "userSex":"[ÓÃ»§ĞÔ±ğ]",
-     * "userAddress":"[µØÖ·]" }
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void queryByUserID(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        if (request.getParameter("userID") != null) {
-            String userID = request.getParameter("userID");
-            Object[] object = (Object[]) DaoFactory.getUserInformationDaoImpl().queryOne(userID);
-            json.put("userID", object[0]);
-            json.put("userPassword", object[1]);
-            json.put("userType", object[2]);
-            json.put("userSex", object[5]);
-            json.put("userAddress", object[6]);
-            writer.print(json);
-        } else {
-            json.put("result", false);
-            writer.print(json);
-        }
-    }
+	/**
+	 * æ ¹æ®ç”¨æˆ·idæŸ¥è¯¢ç”¨æˆ·ä¿¡æ¯(ä¼ å…¥ç”¨æˆ·idï¼Œæœªä¼ å…¥è¾“å‡ºjson:{"result":"false"}) json:{ "userID":"[ç”¨æˆ·id]",
+	 * "userPassword":"[å¯†ç ]", "userType":"[ç”¨æˆ·ç±»å‹]", "userSex":"[ç”¨æˆ·æ€§åˆ«]",
+	 * "userAddress":"[åœ°å€]" }
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void queryByUserID(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		if (request.getParameter("userID") != null) {
+			String userID = request.getParameter("userID");
+			if (DaoFactory.getUserInformationDaoImpl().queryOne(userID) != null) {
+				Object[] object = (Object[]) DaoFactory.getUserInformationDaoImpl().queryOne(userID);
+				json.put("userID", object[0]);
+				json.put("userPassword", object[1]);
+				json.put("userType", object[2]);
+				json.put("userSex", object[5]);
+				json.put("userAddress", object[6]);
+				json.put("result", true);
+			} else {
+				json.put("result", false);
+			}
+		} else {
+			json.put("result", false);
+		}
+		writer.print(json);
+	}
 
-    /**
-     * ¸ù¾İÓÃ»§idĞŞ¸ÄÓÃ»§ĞÅÏ¢£¨´«ÈëÓÃ»§id£¬Î´´«ÈëÊä³öjson:{"result":"false"}£© ³É¹¦ĞŞ¸ÄÊä³öjson{"result":"true"}
-     * ¿ÉĞŞ¸ÄĞÅÏ¢£º
-     * ÃÜÂëuserPassword
-     * ÓÃ»§ÀàĞÍ£¨¹ÜÀíÔ±È¨ÏŞ£©userType
-     * ÓÃ»§ĞÔ±ğuserSex
-     * ÓÃ»§µØÖ·userAddress
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void updateByUserID(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        if (request.getParameter("userID") != null) {
-            User user = DaoFactory.getUserDaoImpl().queryByUserID(request.getParameter("userID"));// »ñÈ¡ÓÃ»§id
-            UserInformation userInformation = DaoFactory.getUserInformationDaoImpl().queryByUserID(user.getUserID());
-            if (request.getParameter("userPassword") != null && request.getParameter("userPassword") != "") {// ¸üĞÂÃÜÂë
-                user.setUserPassword(request.getParameter("userPassword"));
-            }
-            if (request.getParameter("userType") != null && request.getParameter("userType") != "") {// ¸üĞÂÓÃ»§ÀàĞÍ
-                user.setUserType(Integer.parseInt(request.getParameter("userType")));
-            }
-            if (request.getParameter("userSex") != null && request.getParameter("userSex") != "") {// ¸üĞÂĞÔ±ğ
-                userInformation.setUserSex(Integer.parseInt(request.getParameter("userSex")));
-            }
-            if (request.getParameter("userAddress") != null && request.getParameter("userAddress") != "") {// ¸üĞÂµØÖ·
-                userInformation.setUserAddress(request.getParameter("userAddress"));
-            }
-            DaoFactory.getUserDaoImpl().update(user);
-            DaoFactory.getUserInformationDaoImpl().update(userInformation);
-            json.put("result", true);
-        } else {
-            json.put("result", false);
-        }
-        writer.print(json);
-    }
+	/**
+	 * æ ¹æ®ç”¨æˆ·idä¿®æ”¹ç”¨æˆ·ä¿¡æ¯ï¼ˆä¼ å…¥ç”¨æˆ·idï¼Œæœªä¼ å…¥è¾“å‡ºjson:{"result":"false"}ï¼‰ æˆåŠŸä¿®æ”¹è¾“å‡ºjson{"result":"true"}
+	 * å¯ä¿®æ”¹ä¿¡æ¯ï¼š å¯†ç userPassword ç”¨æˆ·ç±»å‹ï¼ˆç®¡ç†å‘˜æƒé™ï¼‰userType ç”¨æˆ·æ€§åˆ«userSex ç”¨æˆ·åœ°å€userAddress
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void updateByUserID(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		if (request.getParameter("userID") != null) {
+			User user = DaoFactory.getUserDaoImpl().queryByUserID(request.getParameter("userID"));// è·å–ç”¨æˆ·id
+			UserInformation userInformation = DaoFactory.getUserInformationDaoImpl().queryByUserID(user.getUserID());
+			if (request.getParameter("userPassword") != null && request.getParameter("userPassword") != "") {// æ›´æ–°å¯†ç 
+				user.setUserPassword(request.getParameter("userPassword"));
+			}
+			if (request.getParameter("userType") != null && request.getParameter("userType") != "") {// æ›´æ–°ç”¨æˆ·ç±»å‹
+				user.setUserType(Integer.parseInt(request.getParameter("userType")));
+			}
+			if (request.getParameter("userSex") != null && request.getParameter("userSex") != "") {// æ›´æ–°æ€§åˆ«
+				userInformation.setUserSex(Integer.parseInt(request.getParameter("userSex")));
+			}
+			if (request.getParameter("userAddress") != null && request.getParameter("userAddress") != "") {// æ›´æ–°åœ°å€
+				userInformation.setUserAddress(request.getParameter("userAddress"));
+			}
+			DaoFactory.getUserDaoImpl().update(user);
+			DaoFactory.getUserInformationDaoImpl().update(userInformation);
+			json.put("result", true);
+		} else {
+			json.put("result", false);
+		}
+		writer.print(json);
+	}
 
-    /**
-     * É¾³ıÓÃ»§(ÓÃ»§id)
-     * json{"result":"true/false"}
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void delete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        if (request.getParameter("userID") == null) {
-            json.put("result", false);
-        } else {
-            String userID = request.getParameter("userID");
-            DaoFactory.getUserDaoImpl().delete(userID);
-            json.put("result", true);
-        }
-        writer.print(json);
-    }
+	/**
+	 * åˆ é™¤ç”¨æˆ·(ç”¨æˆ·id) json{"result":"true/false"}
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void delete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		if (request.getParameter("userID") == null) {
+			json.put("result", false);
+		} else {
+			String userID = request.getParameter("userID");
+			DaoFactory.getUserDaoImpl().delete(userID);
+			json.put("result", true);
+		}
+		writer.print(json);
+	}
 }

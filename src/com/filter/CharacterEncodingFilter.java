@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 
 /**
- * ÓÃÓÚÉèÖÃ HTTPÇëÇó×Ö·û±àÂëµÄ¹ıÂËÆ÷£¬Í¨¹ı¹ıÂËÆ÷²ÎÊıencodingÖ¸Ã÷Ê¹ÓÃºÎÖÖ×Ö·û±àÂë
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ HTTPï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½encodingÖ¸ï¿½ï¿½Ê¹ï¿½Ãºï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 @WebFilter(
 		urlPatterns = {"/*"},
@@ -26,14 +26,14 @@ public class CharacterEncodingFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		if (encoding != null) {
-			/*ÉèÖÃÇëÇó±¨ÎÄµÄ×Ö·û±àÂë*/
+			/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½*/
 			request.setCharacterEncoding(encoding);
 		}
 		chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		/*»ñÈ¡³õÊ¼»¯²ÎÊı*/
+		/*ï¿½ï¿½È¡ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 		this.encoding = fConfig.getInitParameter("encoding");
 	}
 }

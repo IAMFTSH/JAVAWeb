@@ -8,7 +8,7 @@ import henu.dao.ShoppingCarDao;
 
 public class ShoppingCarDaoImpl implements ShoppingCarDao {
 
-	//²éÑ¯ÎÒµÄ¹ºÎï³µ
+	//ï¿½ï¿½Ñ¯ï¿½ÒµÄ¹ï¿½ï¿½ï³µ
 	public List<Object[]> queryMyShoppingCar(String userID) {
 		String sql = "select * from shopping_car,commodity,shops where shopping_car.commodityID=commodity.commodityID and shopping_car.userID=? and shops.shopID=commodity.shopID;";
 		Object[] p = {userID};
@@ -16,12 +16,13 @@ public class ShoppingCarDaoImpl implements ShoppingCarDao {
 		return list;
 	}
 
-	//ÉÌÆ·¼ÓÈë¹ºÎï³µ
+	//ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ë¹ºï¿½ï³µ
 	public void addCommodity(String userID, int commodityID, int num) {
-		//ÅÐ¶Ï¹ºÎï³µÖÐÊÇ·ñÓÐÏàÍ¬µÄÉÌÆ·
+		//ï¿½Ð¶Ï¹ï¿½ï¿½ï³µï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½Æ·
 		String sql = "select * from shopping_car where userID=? and commodityID=? ;";
 		Object[] p = {userID, commodityID};
-		if (ApacheDbutil.Query(sql, p) != null) {
+		List<Object[]> list = ApacheDbutil.Query(sql, p);
+		if (list.size() > 0) {
 			add(userID, commodityID, num);
 		} else {
 			ShoppingCar car = new ShoppingCar();
@@ -32,13 +33,21 @@ public class ShoppingCarDaoImpl implements ShoppingCarDao {
 		}
 	}
 
-	//¹ºÎï³µÖÐÉÌÆ·¼Ó¼õ
+	//ï¿½ï¿½ï¿½ï³µï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ó¼ï¿½
 	public void add(String userID, int commodityID, int add) {
 		ShoppingCar car = new ShoppingCar();
 		car.setUserID(userID);
 		car.setCommodityID(commodityID);
+		String sql1 = "select * from shopping_car where userID=? and commodityID=? ;";
+		Object[] params1 = {userID, commodityID};
+		List<Object[]> list = (List<Object[]>) ApacheDbutil.Query(sql1, params1);
+		if (list.size() > 0) {
+			car.setNum(Integer.parseInt(list.get(0)[2].toString()));
+		}
 		car.setNum(car.getNum() + add);
-		ApacheDbutil.update("shopping_car", car);
+		String sql = "update shopping_car set num=? where userID=? and commodityID=?;";
+		Object[] params = {car.getNum(), car.getUserID(), car.getCommodityID()};
+		ApacheDbutil.update(sql, params);
 	}
 
 	public void reduce(String userID, int commodityID, int reduce) {
@@ -52,20 +61,20 @@ public class ShoppingCarDaoImpl implements ShoppingCarDao {
 		ApacheDbutil.update("shopping_car", car);
 	}
 
-	//É¾³ýÄ³ÑùÉÌÆ·
+	//É¾ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½Æ·
 	public int deleteByCommodityID(int commodityID) {
 		int result = 0;
-		String key = "commodityID";//²éÑ¯Ìõ¼þ
-		Object[] params = {commodityID};//Ìõ¼þµÄÖµ
+		String key = "commodityID";//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+		Object[] params = {commodityID};//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 		result = ApacheDbutil.delete("shopping_car", key, params);
 		return result;
 	}
 
-	//Çå¿Õ¹ºÎï³µ
+	//ï¿½ï¿½Õ¹ï¿½ï¿½ï³µ
 	public int deleteByUserID(String userID) {
 		int result = 0;
-		String key = "userID";//²éÑ¯Ìõ¼þ
-		Object[] params = {userID};//Ìõ¼þµÄÖµ
+		String key = "userID";//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+		Object[] params = {userID};//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 		result = ApacheDbutil.delete("shopping_car", key, params);
 		return result;
 	}

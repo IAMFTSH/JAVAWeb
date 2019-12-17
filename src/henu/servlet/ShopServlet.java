@@ -1,4 +1,4 @@
-package henu.servlet;
+Ôªøpackage henu.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,235 +20,235 @@ import net.sf.json.JSONObject;
  */
 @WebServlet("/ShopServlet")
 public class ShopServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ShopServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ShopServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     * response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        action(request, response);
-    }
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 * response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		action(request, response);
+	}
 
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     * response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        action(request, response);
-    }
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 * response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		action(request, response);
+	}
 
-    /**
-     * action
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void action(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("application/json; charset=utf-8");
-        String method = request.getParameter("method");
-        if ("list".equals(method)) {
-            list(request, response);
-        } else if ("queryByID".equals(method)) {
-            queryByID(request, response);
-        } else if ("add".equals(method)) {
-            add(request, response);
-        } else if ("update".equals(method)) {
-            update(request, response);
-        } else if ("delete".equals(method)) {
-            delete(request, response);
-        }
+	/**
+	 * action
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void action(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
+		String method = request.getParameter("method");
+		if ("list".equals(method)) {
+			list(request, response);
+		} else if ("queryByID".equals(method)) {
+			queryByID(request, response);
+		} else if ("add".equals(method)) {
+			add(request, response);
+		} else if ("update".equals(method)) {
+			update(request, response);
+		} else if ("delete".equals(method)) {
+			delete(request, response);
+		}
 
-    }
+	}
 
-    /**
-     * ≤È—ØÀ˘”–…ÃµÍ  ‰≥ˆjson:[{ "shopID":"[…ÃµÍid]", "shopManager":"[µÍ÷˜id]",
-     * "shopName":"[…ÃµÍ√˚≥∆]" }]
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Shop> list = DaoFactory.getShopDaoImpl().findAll();
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("application/json; charset=utf-8");
-        JSONObject jsonObject = new JSONObject();
-        PrintWriter writer = response.getWriter();
-        JSONArray jsonArray = new JSONArray();
-        for (Shop shop : list) {
-            jsonObject.put("shopID", shop.getShopID());// …ÃµÍid
-            jsonObject.put("shopManager", shop.getShopManager());// µÍ÷˜id
-            jsonObject.put("shopName", shop.getShopName());// …ÃµÍ√˚≥∆
+	/**
+	 * Êü•ËØ¢ÊâÄÊúâÂïÜÂ∫ó ËæìÂá∫json:[{ "shopID":"[ÂïÜÂ∫óid]", "shopManager":"[Â∫ó‰∏ªid]",
+	 * "shopName":"[ÂïÜÂ∫óÂêçÁß∞]" }]
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Shop> list = DaoFactory.getShopDaoImpl().findAll();
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
+		JSONObject jsonObject = new JSONObject();
+		PrintWriter writer = response.getWriter();
+		JSONArray jsonArray = new JSONArray();
+		for (Shop shop : list) {
+			jsonObject.put("shopID", shop.getShopID());// ÂïÜÂ∫óid
+			jsonObject.put("shopManager", shop.getShopManager());// Â∫ó‰∏ªid
+			jsonObject.put("shopName", shop.getShopName());// ÂïÜÂ∫óÂêçÁß∞
 
-            jsonArray.add(jsonObject);
-        }
-        writer.print(jsonArray);
-    }
+			jsonArray.add(jsonObject);
+		}
+		writer.print(jsonArray);
+	}
 
-    /**
-     * ∏˘æ›µÍ∆ÃidªÚ’ﬂµÍ÷˜id≤È—ØµÍ∆Ã£®Œ¥¥´»ÎuserID∫ÕshopID ‰≥ˆjson:{"result":"false"}£©  ‰≥ˆjson:[{
-     * "shopID":"[…ÃµÍid]", "shopName":"[…ÃµÍ√˚≥∆]", "shopManager":"[µÍ÷˜id]",
-     * "commodityID":"[…Ã∆∑id]", "commodityName":"[…Ã∆∑√˚≥∆]", "commodityPrice":"[…Ã∆∑µ•º€]",
-     * "commodityNumber":"[…Ã∆∑ £”‡]", "commodityIntroduce":"[…Ã∆∑ºÚΩÈ]",
-     * "commodityImage":"[…Ã∆∑Õº∆¨¬∑æ∂]" }]
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void queryByID(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        JSONObject jsonObject = new JSONObject();
-        JSONArray jsonArray = new JSONArray();
-        if (request.getParameter("userID") != null) {// ¥´»ÎµÍ÷˜id
-            String userID = request.getParameter("userID");
-            List<Object[]> list = DaoFactory.getShopDaoImpl().queryByShopManager(userID);
-            for (Object[] object : list) {
-                jsonObject.put("shopID", object[0]);
-                jsonObject.put("shopName", object[1]);
-                jsonObject.put("shopManager", object[2]);
-                jsonObject.put("commodityID", object[3]);
-                jsonObject.put("commodityName", object[5]);
-                jsonObject.put("commodityPrice", object[6]);
-                jsonObject.put("commodityNumber", object[7]);
-                jsonObject.put("commodityIntroduce", object[8]);
-                jsonObject.put("commodityImage", object[9]);
+	/**
+	 * Ê†πÊçÆÂ∫óÈì∫idÊàñËÄÖÂ∫ó‰∏ªidÊü•ËØ¢Â∫óÈì∫ÔºàÊú™‰º†ÂÖ•userIDÂíåshopIDËæìÂá∫json:{"result":"false"}Ôºâ ËæìÂá∫json:[{
+	 * "shopID":"[ÂïÜÂ∫óid]", "shopName":"[ÂïÜÂ∫óÂêçÁß∞]", "shopManager":"[Â∫ó‰∏ªid]",
+	 * "commodityID":"[ÂïÜÂìÅid]", "commodityName":"[ÂïÜÂìÅÂêçÁß∞]", "commodityPrice":"[ÂïÜÂìÅÂçï‰ª∑]",
+	 * "commodityNumber":"[ÂïÜÂìÅÂâ©‰Ωô]", "commodityIntroduce":"[ÂïÜÂìÅÁÆÄ‰ªã]",
+	 * "commodityImage":"[ÂïÜÂìÅÂõæÁâáË∑ØÂæÑ]" }]
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void queryByID(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		PrintWriter writer = response.getWriter();
+		JSONObject jsonObject = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+		if (request.getParameter("userID") != null) {// ‰º†ÂÖ•Â∫ó‰∏ªid
+			String userID = request.getParameter("userID");
+			List<Object[]> list = DaoFactory.getShopDaoImpl().queryByShopManager(userID);
+			for (Object[] object : list) {
+				jsonObject.put("shopID", object[0]);
+				jsonObject.put("shopName", object[1]);
+				jsonObject.put("shopManager", object[2]);
+				jsonObject.put("commodityID", object[3]);
+				jsonObject.put("commodityName", object[5]);
+				jsonObject.put("commodityPrice", object[6]);
+				jsonObject.put("commodityNumber", object[7]);
+				jsonObject.put("commodityIntroduce", object[8]);
+				jsonObject.put("commodityImage", object[9]);
 
-                jsonArray.add(jsonObject);
-            }
-            writer.print(jsonArray);
-        } else if (request.getParameter("shopID") != null) {// ¥´»Î…ÃµÍid
-            int shopID = Integer.parseInt(request.getParameter("shopID"));
-            List<Object[]> list = DaoFactory.getShopDaoImpl().queryByShopID(shopID);
-            for (Object[] object : list) {
-                jsonObject.put("shopID", object[0]);
-                jsonObject.put("shopName", object[1]);
-                jsonObject.put("shopManager", object[2]);
-                jsonObject.put("commodityID", object[3]);
-                jsonObject.put("commodityName", object[5]);
-                jsonObject.put("commodityPrice", object[6]);
-                jsonObject.put("commodityNumber", object[7]);
-                jsonObject.put("commodityIntroduce", object[8]);
-                jsonObject.put("commodityImage", object[9]);
+				jsonArray.add(jsonObject);
+			}
+			writer.print(jsonArray);
+		} else if (request.getParameter("shopID") != null) {// ‰º†ÂÖ•ÂïÜÂ∫óid
+			int shopID = Integer.parseInt(request.getParameter("shopID"));
+			List<Object[]> list = DaoFactory.getShopDaoImpl().queryByShopID(shopID);
+			for (Object[] object : list) {
+				jsonObject.put("shopID", object[0]);
+				jsonObject.put("shopName", object[1]);
+				jsonObject.put("shopManager", object[2]);
+				jsonObject.put("commodityID", object[3]);
+				jsonObject.put("commodityName", object[5]);
+				jsonObject.put("commodityPrice", object[6]);
+				jsonObject.put("commodityNumber", object[7]);
+				jsonObject.put("commodityIntroduce", object[8]);
+				jsonObject.put("commodityImage", object[9]);
 
-                jsonArray.add(jsonObject);
-            }
-            writer.print(jsonArray);
-        } else {
-            jsonObject.put("result", false);
-            writer.print(jsonObject);
-        }
-    }
+				jsonArray.add(jsonObject);
+			}
+			writer.print(jsonArray);
+		} else {
+			jsonObject.put("result", false);
+			writer.print(jsonObject);
+		}
+	}
 
-    /**
-     * ÃÌº”…ÃµÍ(¥´»Î”√ªßid,Œ¥¥´»Î”√ªßid ‰≥ˆjson{"result":"false"})
-     * ÃÌº”≥…π¶/ ß∞‹ ‰≥ˆjson{"result":"true/false"}
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        if (request.getParameter("userID") == null) {
-            json.put("result", false);
-        } else {
-            Shop shop = new Shop();
-            shop.setShopID(DaoFactory.getShopDaoImpl().queryMaxID() + 1);
-            shop.setShopManager(request.getParameter("userID"));// ªÒ»°”√ªßid
-            if (request.getParameter("shopName") != null) {
-                shop.setShopName(request.getParameter("shopName"));
-            }
-            if (DaoFactory.getShopDaoImpl().addShop(shop) == 1) {
-                json.put("result", true);
-            } else {
-                json.put("result", false);
-            }
+	/**
+	 * Ê∑ªÂä†ÂïÜÂ∫ó(‰º†ÂÖ•Áî®Êà∑id,Êú™‰º†ÂÖ•Áî®Êà∑idËæìÂá∫json{"result":"false"})
+	 * Ê∑ªÂä†ÊàêÂäü/Â§±Ë¥•ËæìÂá∫json{"result":"true/false"}
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		if (request.getParameter("userID") == null) {
+			json.put("result", false);
+		} else {
+			Shop shop = new Shop();
+			shop.setShopID(DaoFactory.getShopDaoImpl().queryMaxID() + 1);
+			shop.setShopManager(request.getParameter("userID"));// Ëé∑ÂèñÁî®Êà∑id
+			if (request.getParameter("shopName") != null) {
+				shop.setShopName(request.getParameter("shopName"));
+			}
+			if (DaoFactory.getShopDaoImpl().addShop(shop) == 1) {
+				json.put("result", true);
+			} else {
+				json.put("result", false);
+			}
 
-        }
-        writer.print(json);
-    }
+		}
+		writer.print(json);
+	}
 
-    /**
-     * –ﬁ∏ƒ…ÃµÍ–≈œ¢(¥´»Î”√ªßidªÚ’ﬂ…ÃµÍid) ø…–ﬁ∏ƒ ˝æ›£∫…ÃµÍ√˚≥∆shopName json{"result":"true/false"}
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void update(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        if (request.getParameter("userID") == null && request.getParameter("shopID") == null) {
-            json.put("result", false);
-        } else {
-            if (request.getParameter("userID") != null) {
-                String userID = request.getParameter("userID");
-                Shop shop = DaoFactory.getShopDaoImpl().queryByShopmanager(userID);
-                if (request.getParameter("shopName") != null) {
-                    shop.setShopName(request.getParameter("shopName"));
-                    if (DaoFactory.getShopDaoImpl().update(shop) == 1) {
-                        json.put("result", true);
-                    } else {
-                        json.put("result", false);
-                    }
-                }
-            } else {
-                int shopID = Integer.parseInt(request.getParameter("shopID"));
-                Shop shop = DaoFactory.getShopDaoImpl().queryByShopId(shopID);
-                if (DaoFactory.getShopDaoImpl().update(shop) == 1) {
-                    json.put("result", true);
-                } else {
-                    json.put("result", false);
-                }
-            }
-        }
-        writer.print(json);
-    }
+	/**
+	 * ‰øÆÊîπÂïÜÂ∫ó‰ø°ÊÅØ(‰º†ÂÖ•Áî®Êà∑idÊàñËÄÖÂïÜÂ∫óid) ÂèØ‰øÆÊîπÊï∞ÊçÆÔºöÂïÜÂ∫óÂêçÁß∞shopName json{"result":"true/false"}
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void update(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		if (request.getParameter("userID") == null && request.getParameter("shopID") == null) {
+			json.put("result", false);
+		} else {
+			if (request.getParameter("userID") != null) {
+				String userID = request.getParameter("userID");
+				Shop shop = DaoFactory.getShopDaoImpl().queryByShopmanager(userID);
+				if (request.getParameter("shopName") != null) {
+					shop.setShopName(request.getParameter("shopName"));
+					if (DaoFactory.getShopDaoImpl().update(shop) == 1) {
+						json.put("result", true);
+					} else {
+						json.put("result", false);
+					}
+				}
+			} else {
+				int shopID = Integer.parseInt(request.getParameter("shopID"));
+				Shop shop = DaoFactory.getShopDaoImpl().queryByShopId(shopID);
+				if (DaoFactory.getShopDaoImpl().update(shop) == 1) {
+					json.put("result", true);
+				} else {
+					json.put("result", false);
+				}
+			}
+		}
+		writer.print(json);
+	}
 
-    /**
-     * …æ≥˝…ÃµÍ(…ÃµÍid) json{"result":"true/false"}
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void delete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        if (request.getParameter("shopID") == null) {
-            json.put("result", false);
-        } else {
-            int shopID = Integer.parseInt(request.getParameter("shopID"));// ªÒ»°…ÃµÍid
-            DaoFactory.getShopDaoImpl().delete(shopID);
-            json.put("result", true);
-        }
-        writer.print(json);
-    }
+	/**
+	 * Âà†Èô§ÂïÜÂ∫ó(ÂïÜÂ∫óid) json{"result":"true/false"}
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void delete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		if (request.getParameter("shopID") == null) {
+			json.put("result", false);
+		} else {
+			int shopID = Integer.parseInt(request.getParameter("shopID"));// Ëé∑ÂèñÂïÜÂ∫óid
+			DaoFactory.getShopDaoImpl().delete(shopID);
+			json.put("result", true);
+		}
+		writer.print(json);
+	}
 }

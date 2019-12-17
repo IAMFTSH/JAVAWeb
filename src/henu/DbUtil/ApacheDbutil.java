@@ -250,8 +250,8 @@ public class ApacheDbutil {
             }
         } else if (tableType == "shopping_car") {
             ShoppingCar shoppingCar = (ShoppingCar) object;
-            sql = "insert into " + tableType + " values(?,?)";
-            parmas = new Object[]{shoppingCar.getUserID(), shoppingCar.getCommodityID()};
+            sql = "insert into " + tableType + " values(?,?,?)";
+            parmas = new Object[]{shoppingCar.getUserID(), shoppingCar.getCommodityID(), shoppingCar.getNum()};
             try {
                 return queryRunner.update(sql, parmas);
             } catch (SQLException e) {

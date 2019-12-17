@@ -1,15 +1,4 @@
-package henu.servlet;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+ï»¿package henu.servlet;
 
 import henu.bean.Order;
 import henu.bean.OrderCommodity;
@@ -17,182 +6,192 @@ import henu.factory.DaoFactory;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
+import java.util.List;
+
 /**
  * Servlet implementation class OrderServlet
  */
 @WebServlet("/OrderServlet")
 public class OrderServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public OrderServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public OrderServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        action(request, response);
-    }
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		action(request, response);
+	}
 
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        action(request, response);
-    }
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		action(request, response);
+	}
 
-    /**
-     * action
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String method = request.getParameter("method");
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("application/json; charset=utf-8");
-        if ("list".equals(method)) {
-            list(request, response);
-        } else if ("queryByUserID".equals(method)) {
-            queryByUserID(request, response);
-        } else if ("add".equals(method)) {
-            add(request, response);
-        } else if ("delete".equals(method)) {
-            delete(request, response);
-        } else if ("update".equals(method)) {
-            update(request, response);
-        }
-    }
+	/**
+	 * action
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String method = request.getParameter("method");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
+		if ("list".equals(method)) {
+			list(request, response);
+		} else if ("queryByUserID".equals(method)) {
+			queryByUserID(request, response);
+		} else if ("add".equals(method)) {
+			add(request, response);
+		} else if ("delete".equals(method)) {
+			delete(request, response);
+		} else if ("update".equals(method)) {
+			update(request, response);
+		}
+	}
 
-    /**
-     * ËùÓĞ¶©µ¥¼°ÆäĞÅÏ¢
-     * jsonÊı×é[{
-     * "orderID":"[¶©µ¥id]",
-     * "userID":"[ÓÃ»§id]",
-     * "orderDate":"[¶©µ¥´´½¨ÈÕÆÚ]",
-     * "orderState":"[¶©µ¥×´Ì¬]",
-     * "commodityID":"[ÉÌÆ·id]",
-     * "number":"[¹ºÂòÊıÁ¿]",
-     * "shopID":"[ÉÌµêid]",
-     * "commodityName":"[ÉÌÆ·Ãû³Æ]",
-     * "commodityPrice":"[ÉÌÆ·µ¥¼Û]",
-     * "commodityNumber":"[ÉÌÆ·Ê£Óà]",
-     * "commodityIntroduce":"[ÉÌÆ·¼ò½é]",
-     * "commodityImage":"[ÉÌÆ·Í¼Æ¬Â·¾¶]"
-     * }]
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Object[]> list = DaoFactory.getOrderDaoImpl().findAll();
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("application/json; charset=utf-8");
-        JSONObject jsonObject = new JSONObject();
-        PrintWriter writer = response.getWriter();
-        JSONArray jsonArray = new JSONArray();
-        for (Object[] object : list) {
-            jsonObject.put("orderID", object[0]);//¶©µ¥id
-            jsonObject.put("userID", object[1]);//ÓÃ»§id
-            jsonObject.put("orderDate", object[2]);//¶©µ¥´´½¨ÈÕÆÚ
-            jsonObject.put("orderState", object[3]);//¶©µ¥×´Ì¬
-            jsonObject.put("commodityID", object[5]);//ÉÌÆ·id
-            jsonObject.put("number", object[6]);//¹ºÂòÊıÁ¿
-            jsonObject.put("shopID", object[8]);//ÉÌµêid
-            jsonObject.put("commodityName", object[9]);//ÉÌÆ·Ãû³Æ
-            jsonObject.put("commodityPrice", object[10]);//ÉÌÆ·µ¥¼Û
-            jsonObject.put("commodityNumber", object[11]);//ÉÌÆ·Ê£Óà
-            jsonObject.put("commodityIntroduce", object[12]);//ÉÌÆ·¼ò½é
-            jsonObject.put("commodityImage", object[13]);//ÉÌÆ·Í¼Æ¬Â·¾¶
-            jsonArray.add(jsonObject);
-        }
-        writer.print(jsonArray);
+	/**
+	 * æ‰€æœ‰è®¢å•åŠå…¶ä¿¡æ¯
+	 * jsonæ•°ç»„[{
+	 * "orderID":"[è®¢å•id]",
+	 * "userID":"[ç”¨æˆ·id]",
+	 * "orderDate":"[è®¢å•åˆ›å»ºæ—¥æœŸ]",
+	 * "orderState":"[è®¢å•çŠ¶æ€]",
+	 * "commodityID":"[å•†å“id]",
+	 * "number":"[è´­ä¹°æ•°é‡]",
+	 * "shopID":"[å•†åº—id]",
+	 * "commodityName":"[å•†å“åç§°]",
+	 * "commodityPrice":"[å•†å“å•ä»·]",
+	 * "commodityNumber":"[å•†å“å‰©ä½™]",
+	 * "commodityIntroduce":"[å•†å“ç®€ä»‹]",
+	 * "commodityImage":"[å•†å“å›¾ç‰‡è·¯å¾„]"
+	 * }]
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Object[]> list = DaoFactory.getOrderDaoImpl().findAll();
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
+		JSONObject jsonObject = new JSONObject();
+		PrintWriter writer = response.getWriter();
+		JSONArray jsonArray = new JSONArray();
+		for (Object[] object : list) {
+			jsonObject.put("orderID", object[0]);//è®¢å•id
+			jsonObject.put("userID", object[1]);//ç”¨æˆ·id
+			jsonObject.put("orderDate", object[2]);//è®¢å•åˆ›å»ºæ—¥æœŸ
+			jsonObject.put("orderState", object[3]);//è®¢å•çŠ¶æ€
+			jsonObject.put("commodityID", object[5]);//å•†å“id
+			jsonObject.put("number", object[6]);//è´­ä¹°æ•°é‡
+			jsonObject.put("shopID", object[8]);//å•†åº—id
+			jsonObject.put("commodityName", object[9]);//å•†å“åç§°
+			jsonObject.put("commodityPrice", object[10]);//å•†å“å•ä»·
+			jsonObject.put("commodityNumber", object[11]);//å•†å“å‰©ä½™
+			jsonObject.put("commodityIntroduce", object[12]);//å•†å“ç®€ä»‹
+			jsonObject.put("commodityImage", object[13]);//å•†å“å›¾ç‰‡è·¯å¾„
+			jsonArray.add(jsonObject);
+		}
+		writer.print(jsonArray);
 
-    }
+	}
 
-    /**
-     * ¸ù¾İÓÃ»§id²éÑ¯¶©µ¥¼°ÆäĞÅÏ¢£¨´«ÈëuserID£¬Î´´«ÈëÔò·µ»Øjson{"result":"false"}£©
-     * Êä³öjsonÊı×é[{
-     * "orderID":"[¶©µ¥id]",
-     * "userID":"[ÓÃ»§id]",
-     * "orderDate":"[¶©µ¥´´½¨ÈÕÆÚ]",
-     * "orderState":"[¶©µ¥×´Ì¬]",
-     * "commodityID":"[ÉÌÆ·id]",
-     * "number":"[¹ºÂòÊıÁ¿]",
-     * "shopID":"[ÉÌµêid]",
-     * "commodityName":"[ÉÌÆ·Ãû³Æ]",
-     * "commodityPrice":"[ÉÌÆ·µ¥¼Û]",
-     * "commodityNumber":"[ÉÌÆ·Ê£Óà]",
-     * "commodityIntroduce":"[ÉÌÆ·¼ò½é]",
-     * "commodityImage":"[ÉÌÆ·Í¼Æ¬Â·¾¶]"
-     * }]
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void queryByUserID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userID = "";
-        PrintWriter writer = response.getWriter();
-        if (request.getParameter("userID") != null) {
-            userID = request.getParameter("userID");//»ñÈ¡ÓÃ»§id
-            List<Object[]> list = DaoFactory.getOrderDaoImpl().queryByUser(userID);
-            response.setCharacterEncoding("utf-8");
-            response.setContentType("application/json; charset=utf-8");
-            JSONObject jsonObject = new JSONObject();
-            JSONArray jsonArray = new JSONArray();
-            for (Object[] object : list) {
-                jsonObject.put("orderID", object[0]);//¶©µ¥id
-                jsonObject.put("userID", object[1]);//ÓÃ»§id
-                jsonObject.put("orderDate", object[2]);//¶©µ¥´´½¨ÈÕÆÚ
-                jsonObject.put("orderState", object[3]);//¶©µ¥×´Ì¬
-                jsonObject.put("commodityID", object[5]);//ÉÌÆ·id
-                jsonObject.put("number", object[6]);//¹ºÂòÊıÁ¿
-                jsonObject.put("shopID", object[8]);//ÉÌµêid
-                jsonObject.put("commodityName", object[9]);//ÉÌÆ·Ãû³Æ
-                jsonObject.put("commodityPrice", object[10]);//ÉÌÆ·µ¥¼Û
-                jsonObject.put("commodityNumber", object[11]);//ÉÌÆ·Ê£Óà
-                jsonObject.put("commodityIntroduce", object[12]);//ÉÌÆ·¼ò½é
-                jsonObject.put("commodityImage", object[13]);//ÉÌÆ·Í¼Æ¬Â·¾¶
-                jsonArray.add(jsonObject);
-            }
-            writer.print(jsonArray);
-        } else {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("result", false);
-            writer.print(jsonObject);
-        }
-    }
+	/**
+	 * æ ¹æ®ç”¨æˆ·idæŸ¥è¯¢è®¢å•åŠå…¶ä¿¡æ¯ï¼ˆä¼ å…¥userIDï¼Œæœªä¼ å…¥åˆ™è¿”å›json{"result":"false"}ï¼‰
+	 * è¾“å‡ºjsonæ•°ç»„[{
+	 * "orderID":"[è®¢å•id]",
+	 * "userID":"[ç”¨æˆ·id]",
+	 * "orderDate":"[è®¢å•åˆ›å»ºæ—¥æœŸ]",
+	 * "orderState":"[è®¢å•çŠ¶æ€]",
+	 * "commodityID":"[å•†å“id]",
+	 * "number":"[è´­ä¹°æ•°é‡]",
+	 * "shopID":"[å•†åº—id]",
+	 * "commodityName":"[å•†å“åç§°]",
+	 * "commodityPrice":"[å•†å“å•ä»·]",
+	 * "commodityNumber":"[å•†å“å‰©ä½™]",
+	 * "commodityIntroduce":"[å•†å“ç®€ä»‹]",
+	 * "commodityImage":"[å•†å“å›¾ç‰‡è·¯å¾„]"
+	 * }]
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void queryByUserID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userID = "";
+		PrintWriter writer = response.getWriter();
+		if (request.getParameter("userID") != null) {
+			userID = request.getParameter("userID");//è·å–ç”¨æˆ·id
+			List<Object[]> list = DaoFactory.getOrderDaoImpl().queryByUser(userID);
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("application/json; charset=utf-8");
+			JSONObject jsonObject = new JSONObject();
+			JSONArray jsonArray = new JSONArray();
+			for (Object[] object : list) {
+				jsonObject.put("orderID", object[0]);//è®¢å•id
+				jsonObject.put("userID", object[1]);//ç”¨æˆ·id
+				jsonObject.put("orderDate", object[2]);//è®¢å•åˆ›å»ºæ—¥æœŸ
+				jsonObject.put("orderState", object[3]);//è®¢å•çŠ¶æ€
+				jsonObject.put("commodityID", object[5]);//å•†å“id
+				jsonObject.put("number", object[6]);//è´­ä¹°æ•°é‡
+				jsonObject.put("shopID", object[8]);//å•†åº—id
+				jsonObject.put("commodityName", object[9]);//å•†å“åç§°
+				jsonObject.put("commodityPrice", object[10]);//å•†å“å•ä»·
+				jsonObject.put("commodityNumber", object[11]);//å•†å“å‰©ä½™
+				jsonObject.put("commodityIntroduce", object[12]);//å•†å“ç®€ä»‹
+				jsonObject.put("commodityImage", object[13]);//å•†å“å›¾ç‰‡è·¯å¾„
+				jsonArray.add(jsonObject);
+			}
+			writer.print(jsonArray);
+		} else {
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("result", false);
+			writer.print(jsonObject);
+		}
+	}
 
-    /**
-     * ¸ù¾İµ±Ç°¹ºÎï³µĞÅÏ¢ ´´½¨¶©µ¥(´«ÈëÓÃ»§id)
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        if (request.getParameter("userID") == null) {
-            json.put("result", false);
-        } else {
-            String userID = request.getParameter("userID");
-            List<Object[]> list = DaoFactory.getShoppingCarDaoImpl().queryMyShoppingCar(userID);
-            for (Object[] object : list) {
+	/**
+	 * æ ¹æ®å½“å‰è´­ç‰©è½¦ä¿¡æ¯ åˆ›å»ºè®¢å•(ä¼ å…¥ç”¨æˆ·id)
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		if (request.getParameter("userID") == null) {
+			json.put("result", false);
+		} else {
+			String userID = request.getParameter("userID");
+			List<Object[]> list = DaoFactory.getShoppingCarDaoImpl().queryMyShoppingCar(userID);
+			for (Object[] object : list) {
 				/*
 				jsonObject.put("userID", object[0]);
 				jsonObject.put("commodityID", object[1]);
@@ -206,66 +205,66 @@ public class OrderServlet extends HttpServlet {
 				jsonObject.put("commodityImage", object[9]);
 				jsonObject.put("shopName", object[11]);
 				*/
-                Order order = new Order();
-                order.setOrderID(DaoFactory.getOrderDaoImpl().queryMaxID() + 1);
-                order.setOrderDate(new Date());
-                order.setOrderState(0);
-                order.setUserID(userID);
-                OrderCommodity orderCommodity = new OrderCommodity();
-                orderCommodity.setCommodityID((Integer) object[1]);
-                orderCommodity.setNumber((Integer) object[2]);
-                orderCommodity.setOrderID(order.getOrderID());
-                DaoFactory.getOrderDaoImpl().addOrder(order);
-                DaoFactory.getOrderDaoImpl().addOrderCommodity(orderCommodity);
-            }
-            json.put("result", true);
-        }
-        writer.print(json);
-    }
+				Order order = new Order();
+				order.setOrderID(DaoFactory.getOrderDaoImpl().queryMaxID() + 1);
+				order.setOrderDate(new Date());
+				order.setOrderState(0);
+				order.setUserID(userID);
+				OrderCommodity orderCommodity = new OrderCommodity();
+				orderCommodity.setCommodityID((Integer) object[1]);
+				orderCommodity.setNumber((Integer) object[2]);
+				orderCommodity.setOrderID(order.getOrderID());
+				DaoFactory.getOrderDaoImpl().addOrder(order);
+				DaoFactory.getOrderDaoImpl().addOrderCommodity(orderCommodity);
+			}
+			json.put("result", true);
+		}
+		writer.print(json);
+	}
 
-    /**
-     * É¾³ı¶©µ¥(¶©µ¥id)
-     * json:{"result":"true/false"}
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        if (request.getParameter("orderID") == null) {
-            json.put("result", false);
-        } else {
-            int orderID = Integer.parseInt(request.getParameter("orderID"));
-            DaoFactory.getOrderDaoImpl().delete(orderID);
-            json.put("result", true);
-        }
-        writer.print(json);
-    }
+	/**
+	 * åˆ é™¤è®¢å•(è®¢å•id)
+	 * json:{"result":"true/false"}
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		if (request.getParameter("orderID") == null) {
+			json.put("result", false);
+		} else {
+			int orderID = Integer.parseInt(request.getParameter("orderID"));
+			DaoFactory.getOrderDaoImpl().delete(orderID);
+			json.put("result", true);
+		}
+		writer.print(json);
+	}
 
-    /**
-     * ĞŞ¸Ä¶©µ¥(¶©µ¥id,Òª¸Ä³ÉµÄ¶©µ¥×´Ì¬orderState[0Î´¸¶¿î][1ÒÑ¸¶¿î][2ÒÑ·¢»õ][3ÒÑÈ·ÈÏÊÕ»õ][4ÇëÇóÍË»õ][5ÕıÔÚÊÜÀíÍË»õ][6ÒÑÍË»õ])
-     * json:{"result":"true/false"}
-     * ¿ÉĞŞ¸Ä£º¶©µ¥×´Ì¬
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        if (request.getParameter("orderID") == null || request.getParameter("orderState") == null) {
-            json.put("result", false);
-        } else {
-            int orderID = Integer.parseInt(request.getParameter("orderID"));
-            int orderState = Integer.parseInt(request.getParameter("orderState"));
-            DaoFactory.getOrderDaoImpl().update(orderID, orderState);
-            json.put("result", true);
-        }
-        writer.print(json);
-    }
+	/**
+	 * ä¿®æ”¹è®¢å•(è®¢å•id,è¦æ”¹æˆçš„è®¢å•çŠ¶æ€orderState[0æœªä»˜æ¬¾][1å·²ä»˜æ¬¾][2å·²å‘è´§][3å·²ç¡®è®¤æ”¶è´§][4è¯·æ±‚é€€è´§][5æ­£åœ¨å—ç†é€€è´§][6å·²é€€è´§])
+	 * json:{"result":"true/false"}
+	 * å¯ä¿®æ”¹ï¼šè®¢å•çŠ¶æ€
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		if (request.getParameter("orderID") == null || request.getParameter("orderState") == null) {
+			json.put("result", false);
+		} else {
+			int orderID = Integer.parseInt(request.getParameter("orderID"));
+			int orderState = Integer.parseInt(request.getParameter("orderState"));
+			DaoFactory.getOrderDaoImpl().update(orderID, orderState);
+			json.put("result", true);
+		}
+		writer.print(json);
+	}
 }

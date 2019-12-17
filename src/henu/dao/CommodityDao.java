@@ -6,111 +6,111 @@ import henu.bean.Commodity;
 
 public interface CommodityDao {
 
-    /**
-     * ²éÑ¯ËùÓÐÉÌÆ·
-     *
-     * @return List<Commodity>
-     */
-    public List<Commodity> findAll();
+	/**
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
+	 *
+	 * @return List<Commodity>
+	 */
+	public List<Commodity> findAll();
 
-    /**
-     * Ìí¼ÓÉÌÆ·
-     *
-     * @param commodity
-     * @return Ìí¼Ó³É¹¦·µ»ØÓ°ÏìÐÐÊý£¬Ìí¼ÓÊ§°Ü·µ»Ø0
-     */
-    public int addCommodity(Commodity commodity);
+	/**
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
+	 *
+	 * @param commodity
+	 * @return ï¿½ï¿½Ó³É¹ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü·ï¿½ï¿½ï¿½0
+	 */
+	public int addCommodity(Commodity commodity);
 
-    /**
-     * ¸ù¾ÝÉÌÆ·idÉ¾³ýÉÌÆ·
-     *
-     * @param commodity
-     * @return É¾³ý³É¹¦·µ»ØÓ°ÏìÐÐÊý¡£Ìí¼ÓÊ§°Ü·µ»Ø0
-     */
-    public int deleteByID(int commodityID);
+	/**
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·idÉ¾ï¿½ï¿½ï¿½ï¿½Æ·
+	 *
+	 * @param commodity
+	 * @return É¾ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü·ï¿½ï¿½ï¿½0
+	 */
+	public int deleteByID(int commodityID);
 
-    /**
-     * ÐÞ¸ÄÉÌÆ·
-     *
-     * @param commodity
-     * @return ÐÞ¸Ä³É¹¦·µ»ØÓ°ÏìÐÐÊý£¬ÐÞ¸ÄÊ§°Ü·µ»Ø0
-     */
-    public int update(Commodity commodity);
+	/**
+	 * ï¿½Þ¸ï¿½ï¿½ï¿½Æ·
+	 *
+	 * @param commodity
+	 * @return ï¿½Þ¸Ä³É¹ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½Ê§ï¿½Ü·ï¿½ï¿½ï¿½0
+	 */
+	public int update(Commodity commodity);
 
-    /**
-     * ÉÌÆ·idÑ°ÕÒÉÌÆ·
-     *
-     * @param commodityID
-     * @return Commodity Ò»¸öÉÌÆ·ÊµÀý
-     */
-    public Commodity queryByCommodityID(int commodityID);
+	/**
+	 * ï¿½ï¿½Æ·idÑ°ï¿½ï¿½ï¿½ï¿½Æ·
+	 *
+	 * @param commodityID
+	 * @return Commodity Ò»ï¿½ï¿½ï¿½ï¿½Æ·Êµï¿½ï¿½
+	 */
+	public Commodity queryByCommodityID(int commodityID);
 
-    /**
-     * ÉÌµêid²éÑ¯ÉÌÆ·
-     *
-     * @param shopID
-     * @return List<Commodity>
-     */
-    public List<Commodity> queryByShopID(int shopID);
+	/**
+	 * ï¿½Ìµï¿½idï¿½ï¿½Ñ¯ï¿½ï¿½Æ·
+	 *
+	 * @param shopID
+	 * @return List<Commodity>
+	 */
+	public List<Commodity> queryByShopID(int shopID);
 
-    /**
-     * ÉÌµêÃû³Æ²éÑ¯ÉÌÆ·£¨Ä£ºý²éÕÒ£©
-     * Á¬½Óshops ±íºÍcommodity±í
-     *
-     * @param shopName
-     * @return List<Object [ ]>
-     */
-    public List<Object[]> queryByShopName(String shopName);
+	/**
+	 * ï¿½Ìµï¿½ï¿½ï¿½ï¿½Æ²ï¿½Ñ¯ï¿½ï¿½Æ·ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½Ò£ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½shops ï¿½ï¿½ï¿½commodityï¿½ï¿½
+	 *
+	 * @param shopName
+	 * @return List<Object [ ]>
+	 */
+	public List<Object[]> queryByShopName(String shopName);
 
-    /**
-     * ÉÌÆ·Ãû³Æ²éÑ¯ÉÌÆ·£¨Ä£ºý²éÑ¯£©
-     *
-     * @param name
-     * @return List<Commodity>
-     */
-    public List<Commodity> queryByCommodityName(String name);
+	/**
+	 * ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Æ²ï¿½Ñ¯ï¿½ï¿½Æ·ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½
+	 *
+	 * @param name
+	 * @return List<Commodity>
+	 */
+	public List<Commodity> queryByCommodityName(String name);
 
-    /**
-     * ÉÌÆ·¼Û¸ñ²éÑ¯ÉÌÆ·
-     *
-     * @return List<Commodity>
-     */
-    public List<Object[]> queryByPriceMin(int minPrice);
+	/**
+	 * ï¿½ï¿½Æ·ï¿½Û¸ï¿½ï¿½Ñ¯ï¿½ï¿½Æ·
+	 *
+	 * @return List<Commodity>
+	 */
+	public List<Object[]> queryByPriceMin(int minPrice);
 
-    public List<Object[]> queryByPriceMax(int maxPrice);
+	public List<Object[]> queryByPriceMax(int maxPrice);
 
-    public List<Object[]> queryByPriceMinToMax(int minPrice, int maxPrice);
+	public List<Object[]> queryByPriceMinToMax(int minPrice, int maxPrice);
 
-    /**
-     * ÉÌÆ·ÊýÁ¿¼õÉÙ
-     *
-     * @param commodity
-     * @param reduce
-     * @return int Ó°ÏìÐÐÊý£¬³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-     */
-    public int reduce(Commodity commodity, int reduce);
+	/**
+	 * ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 *
+	 * @param commodity
+	 * @param reduce
+	 * @return int Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê§ï¿½Ü·ï¿½ï¿½ï¿½0
+	 */
+	public int reduce(Commodity commodity, int reduce);
 
-    /**
-     * ÉÌÆ·ÊýÁ¿Ôö¼Ó
-     *
-     * @param commodity
-     * @param add
-     * @return int Ó°ÏìÐÐÊý£¬³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-     */
-    public int add(Commodity commodity, int add);
+	/**
+	 * ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 *
+	 * @param commodity
+	 * @param add
+	 * @return int Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê§ï¿½Ü·ï¿½ï¿½ï¿½0
+	 */
+	public int add(Commodity commodity, int add);
 
-    /**
-     * ÐÞ¸ÄÉÌÆ·Í¼Æ¬Â·¾¶
-     *
-     * @param commodity
-     * @return
-     */
-    public int updateImage(Commodity commodity);
+	/**
+	 * ï¿½Þ¸ï¿½ï¿½ï¿½Æ·Í¼Æ¬Â·ï¿½ï¿½
+	 *
+	 * @param commodity
+	 * @return
+	 */
+	public int updateImage(Commodity commodity);
 
-    /**
-     * ²éÑ¯Ä¿Ç°×î´óid
-     *
-     * @return
-     */
-    public int queryMaxID();
+	/**
+	 * ï¿½ï¿½Ñ¯Ä¿Ç°ï¿½ï¿½ï¿½id
+	 *
+	 * @return
+	 */
+	public int queryMaxID();
 }

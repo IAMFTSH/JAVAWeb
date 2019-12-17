@@ -1,4 +1,4 @@
-package henu.servlet;
+ï»¿package henu.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,201 +20,201 @@ import net.sf.json.JSONObject;
  */
 @WebServlet("/CommodityServlet")
 public class CommodityServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CommodityServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public CommodityServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     * response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        action(request, response);
-    }
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 * response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		action(request, response);
+	}
 
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     * response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        action(request, response);
-    }
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 * response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		action(request, response);
+	}
 
-    /**
-     * action
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void action(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("application/json; charset=utf-8");
-        String method = request.getParameter("method");
-        if ("list".equals(method)) {
-            list(request, response);
-        } else if ("add".equals(method)) {
-            add(request, response);
-        } else if ("update".equals(method)) {
-            update(request, response);
-        } else if ("delete".equals(method)) {
-            delete(request, response);
-        } else if ("queryByID".equals(method)) {
-            queryByID(request, response);
-        }
-    }
+	/**
+	 * action
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void action(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
+		String method = request.getParameter("method");
+		if ("list".equals(method)) {
+			list(request, response);
+		} else if ("add".equals(method)) {
+			add(request, response);
+		} else if ("update".equals(method)) {
+			update(request, response);
+		} else if ("delete".equals(method)) {
+			delete(request, response);
+		} else if ("queryByID".equals(method)) {
+			queryByID(request, response);
+		}
+	}
 
-    /**
-     * ²éÑ¯ËùÓĞÉÌÆ· Êä³öjson JSONArrayÊı×é jsonObject{ "commodityID":"[ÉÌÆ·id]",
-     * "commodityName":"[ÉÌÆ·Ãû³Æ]", "commodityNumber":"[ÉÌÆ·Ê£Óà]",
-     * "commodityImage":"[ÉÌÆ·Í¼Æ¬Â·¾¶]", "commodityIntroduce":"[ÉÌÆ·¼ò½é]",
-     * "commodityPrice":"[ÉÌÆ·µ¥¼Û]", "shopID":"[ÉÌµêid]" }
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Commodity> list = DaoFactory.getCommodityDaoImpl().findAll();
-        JSONObject jsonObject = new JSONObject();
-        PrintWriter writer = response.getWriter();
-        JSONArray jsonArray = new JSONArray();
-        for (Commodity commodity : list) {
-            jsonObject.put("commodityID", commodity.getCommodityID());
-            jsonObject.put("commodityName", commodity.getCommodityName());
-            jsonObject.put("commodityNumber", commodity.getCommodityNumber());
-            jsonObject.put("commodityImage", commodity.getCommodityImage());
-            jsonObject.put("shopID", commodity.getShopID());
-            jsonObject.put("commodityIntroduce", commodity.getCommodityIntroduce());
-            jsonObject.put("commodityPrice", commodity.getCommodityPrice());
-            jsonArray.add(jsonObject);
-        }
-        writer.print(jsonArray);
-    }
+	/**
+	 * æŸ¥è¯¢æ‰€æœ‰å•†å“ è¾“å‡ºjson JSONArrayæ•°ç»„ jsonObject{ "commodityID":"[å•†å“id]",
+	 * "commodityName":"[å•†å“åç§°]", "commodityNumber":"[å•†å“å‰©ä½™]",
+	 * "commodityImage":"[å•†å“å›¾ç‰‡è·¯å¾„]", "commodityIntroduce":"[å•†å“ç®€ä»‹]",
+	 * "commodityPrice":"[å•†å“å•ä»·]", "shopID":"[å•†åº—id]" }
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Commodity> list = DaoFactory.getCommodityDaoImpl().findAll();
+		JSONObject jsonObject = new JSONObject();
+		PrintWriter writer = response.getWriter();
+		JSONArray jsonArray = new JSONArray();
+		for (Commodity commodity : list) {
+			jsonObject.put("commodityID", commodity.getCommodityID());
+			jsonObject.put("commodityName", commodity.getCommodityName());
+			jsonObject.put("commodityNumber", commodity.getCommodityNumber());
+			jsonObject.put("commodityImage", commodity.getCommodityImage());
+			jsonObject.put("shopID", commodity.getShopID());
+			jsonObject.put("commodityIntroduce", commodity.getCommodityIntroduce());
+			jsonObject.put("commodityPrice", commodity.getCommodityPrice());
+			jsonArray.add(jsonObject);
+		}
+		writer.print(jsonArray);
+	}
 
-    /**
-     * Ìí¼ÓÉÌÆ· Êä³öjson{"result":"true"}
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Commodity commodity = new Commodity();
-        commodity.setCommodityID(DaoFactory.getCommodityDaoImpl().queryMaxID() + 1);
-        commodity.setCommodityImage(request.getParameter("commodityImage"));// »ñÈ¡ÉÌÆ·Í¼Æ¬Â·¾¶
-        commodity.setCommodityIntroduce(request.getParameter("commodityIntroduce"));// »ñÈ¡ÉÌÆ·¼ò½é
-        commodity.setCommodityName(request.getParameter("commodityName"));// »ñÈ¡ÉÌÆ·Ãû³Æ
-        commodity.setShopID(Integer.parseInt(request.getParameter("shopID")));// »ñÈ¡ÉÌµêid
-        commodity.setCommodityNumber(Integer.parseInt(request.getParameter("commodityNumber")));// »ñÈ¡ÉÌÆ·ÊıÁ¿
-        commodity.setCommodityPrice(Integer.parseInt(request.getParameter("commodityPrice")));// »ñÈ¡ÉÌÆ·µ¥¼Û
-        DaoFactory.getCommodityDaoImpl().addCommodity(commodity);
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        json.put("result", true);
-        writer.print(json);
-    }
+	/**
+	 * æ·»åŠ å•†å“ è¾“å‡ºjson{"result":"true"}
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Commodity commodity = new Commodity();
+		commodity.setCommodityID(DaoFactory.getCommodityDaoImpl().queryMaxID() + 1);
+		commodity.setCommodityImage(request.getParameter("commodityImage"));// è·å–å•†å“å›¾ç‰‡è·¯å¾„
+		commodity.setCommodityIntroduce(request.getParameter("commodityIntroduce"));// è·å–å•†å“ç®€ä»‹
+		commodity.setCommodityName(request.getParameter("commodityName"));// è·å–å•†å“åç§°
+		commodity.setShopID(Integer.parseInt(request.getParameter("shopID")));// è·å–å•†åº—id
+		commodity.setCommodityNumber(Integer.parseInt(request.getParameter("commodityNumber")));// è·å–å•†å“æ•°é‡
+		commodity.setCommodityPrice(Integer.parseInt(request.getParameter("commodityPrice")));// è·å–å•†å“å•ä»·
+		DaoFactory.getCommodityDaoImpl().addCommodity(commodity);
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		json.put("result", true);
+		writer.print(json);
+	}
 
-    /**
-     * É¾³ıÉÌÆ· Êä³öjson:{"result":"true/false"}
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void delete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        int commodityID = Integer.parseInt(request.getParameter("commodityID"));// »ñÈ¡ÉÌÆ·id
-        int result = DaoFactory.getCommodityDaoImpl().deleteByID(commodityID);
-        PrintWriter writer = response.getWriter();
-        JSONObject json = new JSONObject();
-        if (result == 1) {
-            json.put("result", true);
+	/**
+	 * åˆ é™¤å•†å“ è¾“å‡ºjson:{"result":"true/false"}
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void delete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int commodityID = Integer.parseInt(request.getParameter("commodityID"));// è·å–å•†å“id
+		int result = DaoFactory.getCommodityDaoImpl().deleteByID(commodityID);
+		PrintWriter writer = response.getWriter();
+		JSONObject json = new JSONObject();
+		if (result == 1) {
+			json.put("result", true);
 
-        } else {
-            json.put("result", false);
-        }
-        writer.print(json);
-    }
+		} else {
+			json.put("result", false);
+		}
+		writer.print(json);
+	}
 
-    /**
-     * ¸üĞÂÉÌÆ· Êä³öjson{"result":"true"}
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void update(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        int commodityID = Integer.parseInt(request.getParameter("commodityID"));// »ñÈ¡ÉÌÆ·id
-        Commodity commodity = DaoFactory.getCommodityDaoImpl().queryByCommodityID(commodityID);
-        JSONObject json = new JSONObject();
-        if (request.getParameter("commodityName") != null && request.getParameter("commodityName") != "") {// ¸üĞÂÉÌÆ·Ãû³Æ
-            commodity.setCommodityName(request.getParameter("commodityName"));
-        }
-        if (request.getParameter("commodityImage") != null && request.getParameter("commodityImage") != "") {// ¸üĞÂÉÌÆ·Í¼Æ¬Â·¾¶
-            commodity.setCommodityImage(request.getParameter("commodityImage"));
-        }
-        if (request.getParameter("commodityIntroduce") != null && request.getParameter("commodityIntroduce") != "") {// ¸üĞÂÉÌÆ·¼ò½é
-            commodity.setCommodityIntroduce(request.getParameter("commodityIntroduce"));
-        }
-        if (request.getParameter("commodityPrice") != null && request.getParameter("commodityPrice") != "") {// ¸üĞÂÉÌÆ·µ¥¼Û
-            commodity.setCommodityPrice(Integer.parseInt(request.getParameter("commodityPrice")));
-        }
-        if (request.getParameter("commodityNumber") != null && request.getParameter("commodityNumber") != "") {// ¸üĞÂÉÌÆ·ÊıÁ¿
-            commodity.setCommodityNumber(Integer.parseInt(request.getParameter("commodityNumber")));
-        }
-        DaoFactory.getCommodityDaoImpl().update(commodity);
-        PrintWriter writer = response.getWriter();
-        json.put("result", true);
-        writer.print(json);
-    }
+	/**
+	 * æ›´æ–°å•†å“ è¾“å‡ºjson{"result":"true"}
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void update(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int commodityID = Integer.parseInt(request.getParameter("commodityID"));// è·å–å•†å“id
+		Commodity commodity = DaoFactory.getCommodityDaoImpl().queryByCommodityID(commodityID);
+		JSONObject json = new JSONObject();
+		if (request.getParameter("commodityName") != null && request.getParameter("commodityName") != "") {// æ›´æ–°å•†å“åç§°
+			commodity.setCommodityName(request.getParameter("commodityName"));
+		}
+		if (request.getParameter("commodityImage") != null && request.getParameter("commodityImage") != "") {// æ›´æ–°å•†å“å›¾ç‰‡è·¯å¾„
+			commodity.setCommodityImage(request.getParameter("commodityImage"));
+		}
+		if (request.getParameter("commodityIntroduce") != null && request.getParameter("commodityIntroduce") != "") {// æ›´æ–°å•†å“ç®€ä»‹
+			commodity.setCommodityIntroduce(request.getParameter("commodityIntroduce"));
+		}
+		if (request.getParameter("commodityPrice") != null && request.getParameter("commodityPrice") != "") {// æ›´æ–°å•†å“å•ä»·
+			commodity.setCommodityPrice(Integer.parseInt(request.getParameter("commodityPrice")));
+		}
+		if (request.getParameter("commodityNumber") != null && request.getParameter("commodityNumber") != "") {// æ›´æ–°å•†å“æ•°é‡
+			commodity.setCommodityNumber(Integer.parseInt(request.getParameter("commodityNumber")));
+		}
+		DaoFactory.getCommodityDaoImpl().update(commodity);
+		PrintWriter writer = response.getWriter();
+		json.put("result", true);
+		writer.print(json);
+	}
 
-    /**
-     * ¸ù¾İÉÌÆ·id²éÑ¯ÉÌÆ· jsonObject{ "commodityID":"[ÉÌÆ·id]", "commodityName":"[ÉÌÆ·Ãû³Æ]",
-     * "commodityNumber":"[ÉÌÆ·Ê£Óà]", "commodityImage":"[ÉÌÆ·Í¼Æ¬Â·¾¶]",
-     * "commodityIntroduce":"[ÉÌÆ·¼ò½é]", "commodityPrice":"[ÉÌÆ·µ¥¼Û]", "shopID":"[ÉÌµêid]" }
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void queryByID(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        int commodityID = 0;
-        if (request.getParameter("commodityID") != null) {
-            commodityID = Integer.parseInt(request.getParameter("commodityID"));
-        }
-        Commodity commodity = DaoFactory.getCommodityDaoImpl().queryByCommodityID(commodityID);
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("application/json; charset=utf-8");
-        JSONObject jsonObject = new JSONObject();
-        PrintWriter writer = response.getWriter();
-        jsonObject.put("commodityID", commodity.getCommodityID());
-        jsonObject.put("commodityName", commodity.getCommodityName());
-        jsonObject.put("commodityNumber", commodity.getCommodityNumber());
-        jsonObject.put("commodityImage", commodity.getCommodityImage());
-        jsonObject.put("shopID", commodity.getShopID());
-        jsonObject.put("commodityIntroduce", commodity.getCommodityIntroduce());
-        jsonObject.put("commodityPrice", commodity.getCommodityPrice());
-        writer.print(jsonObject);
-    }
+	/**
+	 * æ ¹æ®å•†å“idæŸ¥è¯¢å•†å“ jsonObject{ "commodityID":"[å•†å“id]", "commodityName":"[å•†å“åç§°]",
+	 * "commodityNumber":"[å•†å“å‰©ä½™]", "commodityImage":"[å•†å“å›¾ç‰‡è·¯å¾„]",
+	 * "commodityIntroduce":"[å•†å“ç®€ä»‹]", "commodityPrice":"[å•†å“å•ä»·]", "shopID":"[å•†åº—id]" }
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void queryByID(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int commodityID = 0;
+		if (request.getParameter("commodityID") != null) {
+			commodityID = Integer.parseInt(request.getParameter("commodityID"));
+		}
+		Commodity commodity = DaoFactory.getCommodityDaoImpl().queryByCommodityID(commodityID);
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
+		JSONObject jsonObject = new JSONObject();
+		PrintWriter writer = response.getWriter();
+		jsonObject.put("commodityID", commodity.getCommodityID());
+		jsonObject.put("commodityName", commodity.getCommodityName());
+		jsonObject.put("commodityNumber", commodity.getCommodityNumber());
+		jsonObject.put("commodityImage", commodity.getCommodityImage());
+		jsonObject.put("shopID", commodity.getShopID());
+		jsonObject.put("commodityIntroduce", commodity.getCommodityIntroduce());
+		jsonObject.put("commodityPrice", commodity.getCommodityPrice());
+		writer.print(jsonObject);
+	}
 }

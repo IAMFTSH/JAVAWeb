@@ -7,75 +7,75 @@ import henu.bean.OrderCommodity;
 
 public interface OrderDao {
 
-    /**
-     * findAll
-     *
-     * @return
-     */
-    public List<Object[]> findAll();
+	/**
+	 * findAll
+	 *
+	 * @return
+	 */
+	public List<Object[]> findAll();
 
-    /**
-     * ¸ù¾ÝÓÃ»§id²éÑ¯¶©µ¥
-     * Á¬½Óorders±í¡¢order_commoidty±íºÍcommodity±í
-     *
-     * @return List<Object [ ]>
-     */
-    public List<Object[]> queryByUser(String userID);
+	/**
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½idï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ordersï¿½ï¿½order_commoidtyï¿½ï¿½ï¿½commodityï¿½ï¿½
+	 *
+	 * @return List<Object [ ]>
+	 */
+	public List<Object[]> queryByUser(String userID);
 
-    /**
-     * ¸ù¾Ý¶©µ¥ºÅ²éÑ¯¶©µ¥
-     * Á¬½Óorders±í¡¢order_commodity±í¡¢commodity±í
-     *
-     * @param orderID
-     * @return List<Object [ ]>
-     */
-    public List<Object[]> queryByOrderId(int orderID);
+	/**
+	 * ï¿½ï¿½ï¿½Ý¶ï¿½ï¿½ï¿½ï¿½Å²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ordersï¿½ï¿½order_commodityï¿½ï¿½commodityï¿½ï¿½
+	 *
+	 * @param orderID
+	 * @return List<Object [ ]>
+	 */
+	public List<Object[]> queryByOrderId(int orderID);
 
-    public Order queryByOrderID(int orderID);
+	public Order queryByOrderID(int orderID);
 
-    /**
-     * ¸ù¾ÝÉÌÆ·id²éÑ¯¶©µ¥
-     *
-     * @param commodity
-     * @return
-     */
-    public List<Object[]> queryByCommodityID(int commodityID);
+	/**
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·idï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+	 *
+	 * @param commodity
+	 * @return
+	 */
+	public List<Object[]> queryByCommodityID(int commodityID);
 
-    /**
-     * Ìí¼Ó¶©µ¥
-     *
-     * @param order
-     * @return int Ó°ÏìÐÐÊý£¬³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-     */
-    public int addOrder(Order order);
+	/**
+	 * ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
+	 *
+	 * @param order
+	 * @return int Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê§ï¿½Ü·ï¿½ï¿½ï¿½0
+	 */
+	public int addOrder(Order order);
 
-    /**
-     * ¶©µ¥ÄÚÌí¼ÓÉÌÆ·
-     *
-     * @param orderCommodity
-     * @return int Ó°ÏìÐÐÊý£¬³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-     */
-    public int addOrderCommodity(OrderCommodity orderCommodity);
+	/**
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
+	 *
+	 * @param orderCommodity
+	 * @return int Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê§ï¿½Ü·ï¿½ï¿½ï¿½0
+	 */
+	public int addOrderCommodity(OrderCommodity orderCommodity);
 
-    /**
-     * ÐÞ¸Ä¶©µ¥×´Ì¬
-     *
-     * @param order
-     * @return int  Ó°ÏìÐÐÊý£¬³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-     */
-    public int update(int orderID, int orderState);
+	/**
+	 * ï¿½Þ¸Ä¶ï¿½ï¿½ï¿½×´Ì¬
+	 *
+	 * @param order
+	 * @return int  Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê§ï¿½Ü·ï¿½ï¿½ï¿½0
+	 */
+	public int update(int orderID, int orderState);
 
-    /**
-     * ²éÑ¯Ä¿Ç°×î´óid
-     *
-     * @return
-     */
-    public int queryMaxID();
+	/**
+	 * ï¿½ï¿½Ñ¯Ä¿Ç°ï¿½ï¿½ï¿½id
+	 *
+	 * @return
+	 */
+	public int queryMaxID();
 
-    /**
-     * É¾³ý¶©µ¥
-     *
-     * @return
-     */
-    public int delete(int orderID);
+	/**
+	 * É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 *
+	 * @return
+	 */
+	public int delete(int orderID);
 }

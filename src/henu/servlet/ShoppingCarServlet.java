@@ -1,18 +1,17 @@
-package henu.servlet;
+ï»¿package henu.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import henu.factory.DaoFactory;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import henu.factory.DaoFactory;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 
 /**
@@ -32,7 +31,7 @@ public class ShoppingCarServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 * response)
+	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -42,7 +41,7 @@ public class ShoppingCarServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 * response)
+	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -73,21 +72,20 @@ public class ShoppingCarServlet extends HttpServlet {
 	}
 
 	/**
-	 * ¸ù¾İÓÃ»§id²éÑ¯¹ºÎï³µĞÅÏ¢(´«ÈëuesrID£¬Î´´«ÈëÊä³öjson{"result":"false"})
-	 * jsonÊı×é[{
-	 * "userID":"[ÓÃ»§id]",
-	 * "commodityID":"[ÉÌÆ·id]",
-	 * "num":"[¹ºÎï³µÖĞµÄÊıÁ¿]",
-	 * "shopManager":"[µêÖ÷id]",
-	 * "shopID":"[ÉÌµêid]",
-	 * "commodityName":"[ÉÌÆ·Ãû³Æ]",
-	 * "commodityPrice":"[ÉÌÆ·µ¥¼Û]",
-	 * "commodityNumber":"[ÉÌÆ·Ê£Óà]",
-	 * "commodityIntroduce":"[ÉÌÆ·¼ò½é]",
-	 * "commodityImage":"[ÉÌÆ·Í¼Æ¬Â·¾¶]",
-	 * "shopName":"[ÉÌµêÃû³Æ]",
+	 * æ ¹æ®ç”¨æˆ·idæŸ¥è¯¢è´­ç‰©è½¦ä¿¡æ¯(ä¼ å…¥uesrIDï¼Œæœªä¼ å…¥è¾“å‡ºjson{"result":"false"})
+	 * jsonæ•°ç»„[{
+	 * "userID":"[ç”¨æˆ·id]",
+	 * "commodityID":"[å•†å“id]",
+	 * "num":"[è´­ç‰©è½¦ä¸­çš„æ•°é‡]",
+	 * "shopManager":"[åº—ä¸»id]",
+	 * "shopID":"[å•†åº—id]",
+	 * "commodityName":"[å•†å“åç§°]",
+	 * "commodityPrice":"[å•†å“å•ä»·]",
+	 * "commodityNumber":"[å•†å“å‰©ä½™]",
+	 * "commodityIntroduce":"[å•†å“ç®€ä»‹]",
+	 * "commodityImage":"[å•†å“å›¾ç‰‡è·¯å¾„]",
+	 * "shopName":"[å•†åº—åç§°]",
 	 * }]
-	 *
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -125,9 +123,8 @@ public class ShoppingCarServlet extends HttpServlet {
 	}
 
 	/**
-	 * Ìí¼ÓÉÌÆ·£¬Èç¹û¹ºÎï³µÖĞÓĞÏàÍ¬ÉÌÆ·ÔòÊıÁ¿Ïà¼Ó£¨´«ÈëÉÌÆ·id£¬ÉÌÆ·ÊıÁ¿£¬ÓÃ»§id£¬Î´´«ÈëÊı¾İÊä³öjson:{"result":"false"}£©
-	 * Ìí¼Ó³É¹¦Êä³öjson{"result":"true"}
-	 *
+	 * æ·»åŠ å•†å“ï¼Œå¦‚æœè´­ç‰©è½¦ä¸­æœ‰ç›¸åŒå•†å“åˆ™æ•°é‡ç›¸åŠ ï¼ˆä¼ å…¥å•†å“idï¼Œå•†å“æ•°é‡ï¼Œç”¨æˆ·idï¼Œæœªä¼ å…¥æ•°æ®è¾“å‡ºjson:{"result":"false"}ï¼‰
+	 * æ·»åŠ æˆåŠŸè¾“å‡ºjson{"result":"true"}
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -140,9 +137,9 @@ public class ShoppingCarServlet extends HttpServlet {
 		if (request.getParameter("commodityID") == null || request.getParameter("num") == null || request.getParameter("userID") == null) {
 			json.put("result", false);
 		} else {
-			String userID = request.getParameter("userID");//»ñÈ¡ÓÃ»§id
-			int commodityID = Integer.parseInt(request.getParameter("commodityID"));//»ñÈ¡ÉÌÆ·id
-			int num = Integer.parseInt(request.getParameter("num"));//»ñÈ¡ÊıÁ¿
+			String userID = request.getParameter("userID");//è·å–ç”¨æˆ·id
+			int commodityID = Integer.parseInt(request.getParameter("commodityID"));//è·å–å•†å“id
+			int num = Integer.parseInt(request.getParameter("num"));//è·å–æ•°é‡
 			DaoFactory.getShoppingCarDaoImpl().addCommodity(userID, commodityID, num);
 			json.put("result", true);
 		}
@@ -150,9 +147,8 @@ public class ShoppingCarServlet extends HttpServlet {
 	}
 
 	/**
-	 * ¹ºÎï³µÉ¾³ıÉÌÆ·(´«ÓÃ»§idÇå¿Õ¹ºÎï³µ£¬´«ÉÌÆ·idÖ»É¾³ı¸ÃÉÌÆ·£¬Ç°ÕßÓÅÏÈ)
+	 * è´­ç‰©è½¦åˆ é™¤å•†å“(ä¼ ç”¨æˆ·idæ¸…ç©ºè´­ç‰©è½¦ï¼Œä¼ å•†å“idåªåˆ é™¤è¯¥å•†å“ï¼Œå‰è€…ä¼˜å…ˆ)
 	 * json{"result":"true/false"}
-	 *
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -162,21 +158,25 @@ public class ShoppingCarServlet extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter writer = response.getWriter();
 		JSONObject json = new JSONObject();
-		if (request.getParameter("commodityID") == null && request.getParameter("userID") == null) {
+		if (request.getParameter("commodityID") == "" && request.getParameter("userID") == "") {
 			json.put("result", false);
 		} else {
-			if (request.getParameter("userID") != null) {
-				String userID = request.getParameter("userID");//»ñÈ¡ÓÃ»§id
-				DaoFactory.getShoppingCarDaoImpl().deleteByUserID(userID);
-				json.put("result", true);
+			if (request.getParameter("userID") != "") {
+				String userID = request.getParameter("userID");//è·å–ç”¨æˆ·id
+				if (DaoFactory.getShoppingCarDaoImpl().deleteByUserID(userID) != 0)
+					json.put("result", true);
+				else
+					json.put("result", false);
 			} else {
-				int commodityID = Integer.parseInt(request.getParameter("commodityID"));//»ñÈ¡ÉÌÆ·id
-				DaoFactory.getShoppingCarDaoImpl().deleteByCommodityID(commodityID);
-				json.put("result", true);
+				int commodityID = Integer.parseInt(request.getParameter("commodityID"));//è·å–å•†å“id
+				if (DaoFactory.getShoppingCarDaoImpl().deleteByCommodityID(commodityID) != 0)
+					json.put("result", true);
+				else
+					json.put("result", false);
 			}
 		}
 		writer.print(json);
 	}
-
-
+	
+	
 }

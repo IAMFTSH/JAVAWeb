@@ -4,42 +4,42 @@ import henu.bean.User;
 
 public interface UserDao {
 
-    /**
-     * µÇÂ¼
-     *
-     * @return
-     */
-    public int login(User user);
+	/**
+	 * ï¿½ï¿½Â¼
+	 *
+	 * @return
+	 */
+	public int login(User user);
 
-    /**
-     * Ìí¼ÓÓÃ»§
-     *
-     * @param user
-     * @return ·µ»ØÓ°ÏìÐÐÊý£¬¼´³É¹¦×¢²áÈËÊý
-     */
-    public int add(User user);
+	/**
+	 * ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+	 *
+	 * @param user
+	 * @return ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 */
+	public int add(User user);
 
-    /**
-     * ²éÑ¯Ò»¸öÓÃ»§
-     *
-     * @return ³É¹¦·µ»Øuser, Ê§°Ü·µ»Ønull
-     */
-    public User queryByUserID(String userID);
+	/**
+	 * ï¿½ï¿½Ñ¯Ò»ï¿½ï¿½ï¿½Ã»ï¿½
+	 *
+	 * @return ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½user,Ê§ï¿½Ü·ï¿½ï¿½ï¿½null
+	 */
+	public User queryByUserID(String userID);
 
-    /**
-     * ÐÞ¸ÄÓÃ»§
-     *
-     * @param user
-     * @return int ³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-     */
-    public int update(User user);
+	/**
+	 * ï¿½Þ¸ï¿½ï¿½Ã»ï¿½
+	 *
+	 * @param user
+	 * @return int ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Ê§ï¿½Ü·ï¿½ï¿½ï¿½0
+	 */
+	public int update(User user);
 
-    /**
-     * É¾³ýÓÃ»§
-     *
-     * @param userID
-     * @return
-     */
-    public int delete(String userID);
+	/**
+	 * É¾ï¿½ï¿½ï¿½Ã»ï¿½
+	 *
+	 * @param userID
+	 * @return
+	 */
+	public int delete(String userID);
 
 }

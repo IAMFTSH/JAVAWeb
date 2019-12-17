@@ -27,8 +27,8 @@ public class DbcpPool {
             Properties p = new Properties();
             p.setProperty("driverClassName", "com.mysql.cj.jdbc.Driver");
             p.setProperty("url", "jdbc:mysql://localhost:3306/shopping mall?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone = GMT");//����д���ݿ�����
-            p.setProperty("username", "root");//���ݿ��˺�
-            p.setProperty("password", "525324");
+            p.setProperty("username", "LVV");//���ݿ��˺�
+            p.setProperty("password", "123456");
             p.setProperty("maxActive", "30");   //�״̬���������
             p.setProperty("maxIdle", "10");      //�������������
             p.setProperty("maxWait", "1000");    //û�п��е����ӣ��������ӵ����������ʱ�䣨ms��  -1����

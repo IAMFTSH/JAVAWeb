@@ -7,73 +7,73 @@ import henu.bean.Shop;
 
 public interface ShopDao {
 
-    /**
-     * ´´½¨ÉÌµê
-     *
-     * @param shop
-     * @return
-     */
-    public int addShop(Shop shop);
+	/**
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½
+	 *
+	 * @param shop
+	 * @return
+	 */
+	public int addShop(Shop shop);
 
-    /**
-     * É¾³ýÉÌµê
-     *
-     * @param shopID
-     * @return
-     */
-    public int delete(int shopID);
+	/**
+	 * É¾ï¿½ï¿½ï¿½Ìµï¿½
+	 *
+	 * @param shopID
+	 * @return
+	 */
+	public int delete(int shopID);
 
-    /**
-     * ÐÞ¸ÄÉÌµê
-     *
-     * @param shop
-     * @return
-     */
-    public int update(Shop shop);
+	/**
+	 * ï¿½Þ¸ï¿½ï¿½Ìµï¿½
+	 *
+	 * @param shop
+	 * @return
+	 */
+	public int update(Shop shop);
 
-    /**
-     * ÉÌµêid²éÕÒµêÆÌÉÌÆ·ÐÅÏ¢
-     *
-     * @param shopID
-     * @return List<Object [ ]>
-     */
-    public List<Object[]> queryByShopID(int shopID);
+	/**
+	 * ï¿½Ìµï¿½idï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¢
+	 *
+	 * @param shopID
+	 * @return List<Object [ ]>
+	 */
+	public List<Object[]> queryByShopID(int shopID);
 
-    /**
-     * µêÖ÷id²éÕÒµêÆÌÉÌÆ·ÐÅÏ¢
-     *
-     * @param userID
-     * @return List<Object [ ]>
-     */
-    public List<Object[]> queryByShopManager(String userID);
+	/**
+	 * ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¢
+	 *
+	 * @param userID
+	 * @return List<Object [ ]>
+	 */
+	public List<Object[]> queryByShopManager(String userID);
 
-    /**
-     * ²éÑ¯ËùÓÐÉÌµêÐÅÏ¢
-     *
-     * @return
-     */
-    public List<Shop> findAll();
+	/**
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½Ï¢
+	 *
+	 * @return
+	 */
+	public List<Shop> findAll();
 
-    /**
-     * ²éÑ¯Ä¿Ç°×î´óid
-     *
-     * @return
-     */
-    public int queryMaxID();
+	/**
+	 * ï¿½ï¿½Ñ¯Ä¿Ç°ï¿½ï¿½ï¿½id
+	 *
+	 * @return
+	 */
+	public int queryMaxID();
 
-    /**
-     * ÉÌµêid²éÕÒµêÆÌÐÅÏ¢
-     *
-     * @param shopID
-     * @return Shop
-     */
-    public Shop queryByShopId(int shopID);
+	/**
+	 * ï¿½Ìµï¿½idï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+	 *
+	 * @param shopID
+	 * @return Shop
+	 */
+	public Shop queryByShopId(int shopID);
 
-    /**
-     * µêÖ÷id²éÕÒµêÆÌÐÅÏ¢
-     *
-     * @param userID
-     * @return Shop
-     */
-    public Shop queryByShopmanager(String userID);
+	/**
+	 * ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+	 *
+	 * @param userID
+	 * @return Shop
+	 */
+	public Shop queryByShopmanager(String userID);
 }

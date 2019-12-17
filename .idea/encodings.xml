@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true">
-    <file url="file://$PROJECT_DIR$/src/com/filter/CharacterEncodingFilter.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/henu/dao/CommodityDao.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/henu/dao/OrderDao.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/henu/dao/ShopDao.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/filter/CharacterEncodingFilter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/CommodityDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/OrderDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/ShopDao.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/henu/dao/ShoppingCarDao.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/henu/dao/UserDao.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/henu/dao/UserInformationDao.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/henu/dao/impl/ShoppingCarDaoImpl.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/henu/servlet/CommodityServlet.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/henu/servlet/OrderServlet.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/henu/servlet/ShopServlet.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/henu/servlet/ShoppingCarServlet.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/henu/servlet/UserServlet.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/UserDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/UserInformationDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/impl/ShopDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/impl/ShoppingCarDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/impl/UserDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/henu/servlet/CommodityServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/henu/servlet/OrderServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/henu/servlet/ShopServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/henu/servlet/ShoppingCarServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/henu/servlet/UserServlet.java" charset="UTF-8" />
   </component>
 </project>
