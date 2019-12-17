@@ -1,0 +1,53 @@
+.detail-top {
+	padding-top: 10px;
+}
+
+#head-images {
+	background: #67B168;
+	no-repeat;
+	background-size: cover;
+}
+
+.word-Width {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.div-width {
+	width: 350px;
+}
+
+#sub {
+	width: 50px;
+	height: 32px;
+}
+
+#inputVal {
+	text-align: center;
+	height: 32px;
+}
+
+#add {
+	width: 50px;
+	height: 32px;
+}
+
+.paddtop {
+	padding-top: 10px;
+}
+
+.paddtop-1 {
+	padding-top: 20px;
+}
+
+p {
+	text-indent: 2em;
+}
+
+#price {
+	color: #D9534F;
+}
+
+#number {
+	margin-left: 50px;
+}
