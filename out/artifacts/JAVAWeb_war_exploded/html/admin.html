@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/shopping_mall/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/shopping_mall/css/admin.css"/>
+    <title>后台管理</title>
+</head>
+<body>
+<!--导航-->
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#slider"
+                aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="#" class="navbar-brand"><span class="glyphicon glyphicon-heart">后台管理</span></a>
+    </div>
+    <ul class="nav navbar-nav navbar-right margin-right">
+        <li>
+            <a href="#"><span class="badge">pokemmo</span></a>
+        </li>
+        <li>
+            <a href="#"><span class="glyphicon glypglyphicon-off">&nbsp;注销</span></a>
+        </li>
+    </ul>
+</nav>
+<!--侧边栏-->
+<nav>
+    <div class="navbar-default navbar-collapse" id="slider">
+        <ul class="nav">
+            <div class="input-group">
+                <input type="text" class="form-control"/>
+                <span class=input-group-btn>
+						<button type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+						</span>
+            </div>
+            <li>
+                <a href="#"> 用户管理</a>
+            </li>
+            <li>
+                <a href="#"> 商家管理</a>
+            </li>
+            <li>
+                <a href="#system" data-toggle="collapse">系统功能</a>
+                <ul id="system" class="nav collapse">
+                    <li>
+                        <a href="#">系统信息</a>
+                    </li>
+                    <li>
+                        <a href="#">日志信息</a>
+                    </li>
+                    <li>
+                        <a href="#">退出</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--
+    主要页面
+-->
+<nav>
+    <div class="page_main">
+        <ol class="breadcrumb">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">幸运蛋</a></li>
+            <li><a href="#">丑丑鱼</a></li>
+        </ol>
+        <div class="row">
+            <div class="col-md-6 col-lg-12">
+                <div class="panel-heading" id="panel-heading">用戶管理</div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped table-hover active">
+                        <thead>
+                        <tr>
+                            <th>用户ID</th>
+                            <th>用戶名</th>
+                            <th>密码</th>
+                            <th>类型</th>
+                            <th>性别</th>
+                            <th>地址</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>2017</td>
+                            <td>幸运蛋</td>
+                            <td>000000</td>
+                            <td>管理员</td>
+                            <td>男</td>
+                            <td>真新镇</td>
+                        </tr>
+                        <tr>
+                            <td>2017</td>
+                            <td>幸运蛋</td>
+                            <td>000000</td>
+                            <td>管理员</td>
+                            <td>男</td>
+                            <td>真新镇</td>
+                        </tr>
+                        <tr>
+                            <td>2017</td>
+                            <td>幸运蛋</td>
+                            <td>000000</td>
+                            <td>管理员</td>
+                            <td>男</td>
+                            <td>真新镇</td>
+                        </tr>
+                        <tr>
+                            <td>2017</td>
+                            <td>幸运蛋</td>
+                            <td>000000</td>
+                            <td>管理员</td>
+                            <td>男</td>
+                            <td>真新镇</td>
+                        </tr>
+                        <tr>
+                            <td>2017</td>
+                            <td>幸运蛋</td>
+                            <td>000000</td>
+                            <td>管理员</td>
+                            <td>男</td>
+                            <td>真新镇</td>
+                        </tr>
+                        <tr>
+                            <td>2017</td>
+                            <td>幸运蛋</td>
+                            <td>000000</td>
+                            <td>管理员</td>
+                            <td>男</td>
+                            <td>真新镇</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <nav class="pull-right">
+                        <ul class="pagination" id="page">
+                            <li><a href="#" aria-label="Previous">上一页</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#" aria-label="Next"><span aria-hidden="true">下一页</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+</body>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</html>

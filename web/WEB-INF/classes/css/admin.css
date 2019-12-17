@@ -1,0 +1,33 @@
+.margin-right {
+    margin-right: 25px;
+}
+
+@media (min-width: 768px) {
+    #slider {
+        width: 200px;
+        margin-top: -20px;
+        position: absolute;
+        z-index: 1;
+        height: 600px;
+    }
+
+}
+
+.page_main {
+    margin-left: 200px;
+    margin-top: -20px;
+}
+
+#panel-heading {
+    margin-top: -20px;
+    height: 5px;
+}
+
+#page {
+    margin-top: 120px;
+}
+
+.table th, .table td {
+    text-align: center;
+    height: 38px;
+}
