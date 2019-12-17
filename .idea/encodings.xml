@@ -2,6 +2,13 @@
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true">
     <file url="file://$PROJECT_DIR$/src/com/filter/CharacterEncodingFilter.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/CommodityDao.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/OrderDao.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/ShopDao.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/ShoppingCarDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/UserDao.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/UserInformationDao.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/henu/dao/impl/ShoppingCarDaoImpl.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/henu/servlet/CommodityServlet.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/henu/servlet/OrderServlet.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/henu/servlet/ShopServlet.java" charset="GBK" />

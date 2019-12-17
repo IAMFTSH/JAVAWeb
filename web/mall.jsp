@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8" import="henu.bean.*,java.util.*" %>
+         pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -192,7 +192,7 @@
                           action="#" method="post">
                         <!--用户框-->
                         <div class="form-group">
-                            <label for="username" class="col-sm-2 control-label">用户名</label>
+                            <label for="login_username" class="col-sm-2 control-label">用户名</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="login_username"
                                        name="login_username">
@@ -201,7 +201,7 @@
                         </div>
                         <!--密码框-->
                         <div class="form-group">
-                            <label for="password" class="col-sm-2 control-label">密码</label>
+                            <label for="login_password" class="col-sm-2 control-label">密码</label>
                             <div class="col-sm-10">
                                 <input type="password" class="form-control" id="login_password"
                                        name="login_password">
@@ -235,94 +235,96 @@
             </div>
         </div>
     </div>
-    <!--
+</div>
+<!--
 注册模态框
 -->
-    <div>
-        <div class="modal fade" id="registModal" tabindex="-1" role="dialog"
-             aria-labelledby="registModalLabel" aria-hidden="true"
-             data-backdrop="true">
-            <div class="modal-dialog" id="registModal-stytle">
-                <div class="modal-content modal_bg">
-                    <!--注册框头部-->
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"
-                                aria-hidden="true">×
-                        </button>
-                        <h4 class="modal-title" id="registModalLabel">欢迎注册！</h4>
-                    </div>
-                    <!--注册框中间部分(from表单)-->
-                    <div class="modal-body">
-                        <form class="form-horizontal" role="form" id="registForm"
-                              action="/shopping_mall/UserServlet?method=add" method="post">
-                            <!--用户框-->
-                            <div class="form-group">
-                                <label for="regist_username" class="col-sm-2 control-label">用户名</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="regist_username"
-                                           name="regist_username">
-                                    <div id="regist_username_message"></div>
-                                </div>
+<div>
+    <div class="modal fade" id="registModal" tabindex="-1" role="dialog"
+         aria-labelledby="registModalLabel" aria-hidden="true"
+         data-backdrop="true">
+        <div class="modal-dialog" id="registModal-stytle">
+            <div class="modal-content modal_bg">
+                <!--注册框头部-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title" id="registModalLabel">欢迎注册！</h4>
+                </div>
+                <!--注册框中间部分(from表单)-->
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" id="registForm"
+                          action="/shopping_mall/UserServlet?method=add" method="post">
+                        <!--用户框-->
+                        <div class="form-group">
+                            <label for="regist_username" class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="regist_username"
+                                       name="regist_username">
+                                <div id="regist_username_message"></div>
                             </div>
-                            <!--密码框-->
-                            <div class="form-group">
-                                <label for="regist_password" class="col-sm-2 control-label">密码</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control"
-                                           id="regist_password" name="regist_password">
-                                    <div id="regist_password_message"></div>
-                                </div>
+                        </div>
+                        <!--密码框-->
+                        <div class="form-group">
+                            <label for="regist_password" class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control"
+                                       id="regist_password" name="regist_password">
+                                <div id="regist_password_message"></div>
                             </div>
-                            <div class="form-group">
-                                <label for="confirmPassword" class="col-sm-2 control-label">确认密码</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control"
-                                           id="confirmPassword" name="confirmPassword">
-                                    <div id="confirmPassword_message"></div>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword" class="col-sm-2 control-label">确认密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control"
+                                       id="confirmPassword" name="confirmPassword">
+                                <div id="confirmPassword_message"></div>
                             </div>
-                            <div class="form-group">
+                        </div>
+                        <div class="form-group">
 
 
-                                <div class="row">
-                                    <div class="col-sm-offset-1 col-sm-2">
-                                        <label>性别</label>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="radio" value="0" name="gender">男
-                                    </div>
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm-3">
-                                        <input type="radio" value="1" name="gender">女
-                                    </div>
+                            <div class="row">
+                                <div class="col-sm-offset-1 col-sm-2">
+                                    <label>性别</label>
                                 </div>
+                                <div class="col-sm-3">
+                                    <input type="radio" value="0" name="gender">男
+                                </div>
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-3">
+                                    <input type="radio" value="1" name="gender">女
+                                </div>
+                            </div>
 
-                                <div class="col-sm-offset-2" id="gender_message"></div>
+                            <div class="col-sm-offset-2" id="gender_message"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address" class="col-sm-2 control-label">地址</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="address"
+                                       name="address">
+                                <div id="address_message"></div>
                             </div>
-                            <div class="form-group">
-                                <label for="address" class="col-sm-2 control-label">地址</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="address"
-                                           name="address">
-                                    <div id="address_message"></div>
-                                </div>
+                        </div>
+                        <!--注册按钮-->
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button id="regist_button" type="button" class="btn btn btn-info">注册</button>
                             </div>
-                            <!--注册按钮-->
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button id="regist_button" type="button" class="btn btn btn-info">注册</button>
-                                </div>
-                                <div class="col-sm-offset-8 col-sm-10">
-                                    <p>
-                                        已有账号？ <a class="go_regist cursor"
-                                                 onclick="close_registMotai()">前去登录</a>
-                                    </p>
-                                </div>
+                            <div class="col-sm-offset-8 col-sm-10">
+                                <p>
+                                    已有账号？ <a class="go_regist cursor"
+                                             onclick="close_registMotai()">前去登录</a>
+                                </p>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 </body>
 </html>
