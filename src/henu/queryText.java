@@ -1,12 +1,11 @@
 package henu;
 
-import java.util.Arrays;
-import java.util.List;
-
 import henu.DbUtil.ApacheDbutil;
 import henu.bean.Commodity;
 import henu.bean.User;
-import henu.bean.UserInformation;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class queryText {

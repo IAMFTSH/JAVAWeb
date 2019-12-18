@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>接口测试</title>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/Test.js"></script>
+</head>
+<body>
+用户id：<input id="userID" value="lvhao000"><br>
+密码：<input id="userPassword" value="Abc12345678"><br>
+商品购买数量：<input id="num" value="2"><br>
+商品id：<input id="commodityID" value="1"><br>
+商品图片路径：<input id="commodityImage" value="/shopping_mall/images/a.png"><br>
+商品简介：<input id="commodityIntroduce" value="测试一下-商品简介"><br>
+商品名称：<input id="commodityName" value="测试一下-商品名称"><br>
+商店id：<input id="shopID" value="1"><br>
+商品库存：<input id="commodityNumber" value="100"><br>
+商品单价：<input id="commodityPrice" value="88"><br>
+订单id：<input id="orderID" value="3"><br>
+目标状态：<input id="orderState" value="1"><br>
+商店名称：<input id="shopName" value="测试一下-商店名称"><br>
+地址：<input id="address" value="广东省信宜某村250号"><br>
+用户性别：<input id="userSex" value="1"><br>
+用户类型：<input id="userType" value="1"><br>
+修改类型：<input id="updateType" value="add"><br>
+修改数量：<input id="updateNum" value="1"><br>
+
+
+<button onclick="Test1()">1. 用户接口测试-用户id查询用户信息(用户id)</button>
+<br>
+<div id="test1"></div>
+<button onclick="Test2()">2. 购物车接口测试-用户id查询购物车信息(用户id)</button>
+<br>
+<div id="test2"></div>
+<button onclick="Test3()">3. 购物车接口测试-添加商品，如果购物车中有相同商品则数量相加(商品id，商品数量，用户id)</button>
+<br>
+<div id="test3"></div>
+<button onclick="Test4()">4. 购物车接口测试-购物车删除商品(传用户id清空购物车，传用户id+商品id只删除该商品)</button>
+<br>
+<div id="test4"></div>
+<button onclick="Test5()">5. 商品接口测试-获取所有商品</button>
+<br>
+<div id="test5"></div>
+<button onclick="Test6()">6. 商品接口测试-添加商品(商品名称，商品库存，商品单价，商品图片路径，商品简介，商店id，商品id会自动生成，不需要提供)</button>
+<br>
+<div id="test6"></div>
+<button onclick="Test7()">7. 商品接口测试-删除商品(商品id)</button>
+<br>
+<div id="test7"></div>
+<button onclick="Test8()">8. 商品接口测试-更新商品(商品id【必须有】，【以下可选】商品名称，商品图片路径，商品简介，商品单价，商品库存)</button>
+<br>
+<div id="test8"></div>
+<button onclick="Test9()">9. 商品接口测试-根据商品id查询商品(商品id)</button>
+<br>
+<div id="test9"></div>
+<button onclick="Test10()">10. 店铺接口测试-根据店铺id或者店主id查询店铺信息(店铺id，或者店主id)</button>
+<br>
+<div id="test10"></div>
+<button onclick="Test11()">11. 店铺接口测试-查询所有商店</button>
+<br>
+<div id="test11"></div>
+<button onclick="Test12()">12. 店铺接口测试-添加商店(用户id，商店名称【可选】，商店id自动生成)</button>
+<br>
+<div id="test12"></div>
+<button onclick="Test13()">13. 店铺接口测试-修改商店名称(用户id或商店id，商店名称)</button>
+<br>
+<div id="test13"></div>
+<button onclick="Test14()">14. 店铺接口测试-删除商店(商店id)</button>
+<br>
+<div id="test14"></div>
+<button onclick="Test15()">15. 订单接口测试-创建订单</button>
+<br>
+<div id="test15"></div>
+<button onclick="Test16()">16. 订单接口测试-根据用户id查询订单及其信息(用户id)</button>
+<br>
+<div id="test16"></div>
+<button onclick="Test17()">17. 订单接口测试-查询所有订单</button>
+<br>
+<div id="test17"></div>
+<button onclick="Test18()">18. 订单接口测试-修改订单状态(订单id，目标状态[0未付款][1已付款][2已发货][3已确认收货][4请求退货][5正在受理退货][6已退货])</button>
+<br>
+<div id="test18"></div>
+<button onclick="Test19()">19. 订单接口测试-删除订单(订单id)</button>
+<br>
+<div id="test19"></div>
+<button onclick="Test20()">20. 用户接口测试-退出登录</button>
+<br>
+<div id="test20"></div>
+<button onclick="Test21()">21. 用户接口测试-用户登录(用户id，密码)</button>
+<br>
+<div id="test21"></div>
+<button onclick="Test22()">22. 接口测试-</button>
+<br>
+<div id="test22"></div>
+<button onclick="Test23()">23. 用户接口测试-管理员登录(用户id，密码，控制台监控登录与无权限账号尝试登陆)</button>
+<br>
+<div id="test23"></div>
+<button onclick="Test24()">24. 用户接口测试-用户注册(用户名，密码，地址，性别)</button>
+<br>
+<div id="test24"></div>
+<button onclick="Test25()">25. 用户接口测试-根据用户id修改用户信息(用户id，【以下可选】密码，用户类型，地址，性别)</button>
+<br>
+<div id="test25"></div>
+<button onclick="Test26()">26. 用户接口测试-删除用户(用户id)</button>
+<br>
+<div id="test26"></div>
+<button onclick="Test27()">27. 接口测试-获取session</button>
+<br>
+<div id="test27"></div>
+<button onclick="Test28()">28. 购物车接口测试-修改数量(用户id，商品id，修改类型[add/reduce/updateTo]，修改数量</button>
+<br>
+<div id="test28"></div>
+
+</body>
+
+</html>

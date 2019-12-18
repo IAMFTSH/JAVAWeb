@@ -8,14 +8,14 @@ public class UserDaoImpl implements UserDao {
 
 	//
 	public int login(User user) {
-		String[] keys1 = {"userID", "userPassword"};
-		Object[] params1 = {user.getUserID(), user.getUserPassword()};
-		User user1 = (User) ApacheDbutil.querySingle("users", keys1, params1);
-		if (user1 != null) {
-			return user1.getUserType();
-		} else
-			return -1;
-	}
+        String[] keys1 = {"userID", "userPassword"};
+        Object[] params1 = {user.getUserID(), user.getUserPassword()};
+        User user1 = (User) ApacheDbutil.querySingle("users", keys1, params1);
+        if (user1 != null) {
+            return user1.getUserType();
+        } else
+            return -1;
+    }
 
 	//
 	public int add(User user) {
@@ -30,11 +30,11 @@ public class UserDaoImpl implements UserDao {
 
 	//
 	public User queryByUserID(String userID) {
-		String[] keys1 = {"userID"};// ��ѯ����
-		Object[] params1 = {userID};// ������ֵ
-		User user1 = (User) ApacheDbutil.querySingle("users", keys1, params1);
-		return user1;
-	}
+        String[] keys1 = {"userID"};// ��ѯ����
+        Object[] params1 = {userID};// ������ֵ
+        User user1 = (User) ApacheDbutil.querySingle("users", keys1, params1);
+        return user1;
+    }
 
 	//
 	public int update(User user) {
@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao {
 		return result;
 	}
 
-	//ɾ���û�
+    //ɾ���û�
 	public int delete(String userID) {
 		Object[] params = {userID};
 		int result = ApacheDbutil.delete("users", "userID", params);

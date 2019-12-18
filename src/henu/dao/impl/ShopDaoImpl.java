@@ -1,26 +1,26 @@
 package henu.dao.impl;
 
-import java.util.List;
-
 import henu.DbUtil.ApacheDbutil;
 import henu.bean.Shop;
 import henu.dao.ShopDao;
 
+import java.util.List;
+
 public class ShopDaoImpl implements ShopDao {
 
-	// �����̵�
-	public int addShop(Shop shop) {
-		int result = ApacheDbutil.insert("shops", shop);
-		return result;
-	}
+    // �����̵�
+    public int addShop(Shop shop) {
+        int result = ApacheDbutil.insert("shops", shop);
+        return result;
+    }
 
-	// ɾ���̵�
+    // ɾ���̵�
 	public int delete(int shopID) {
-		String key = "shopID";
-		Object[] params = {shopID};
-		int result = ApacheDbutil.delete("shops", key, params);
-		return result;
-	}
+        String key = "shopID";
+        Object[] params = {shopID};
+        int result = ApacheDbutil.delete("shops", key, params);
+        return result;
+    }
 
 	// �޸��̵�
 	public int update(Shop shop) {
@@ -30,19 +30,19 @@ public class ShopDaoImpl implements ShopDao {
 
 	// �̵�id���ҵ���
 	public List<Object[]> queryByShopID(int shopID) {
-		String sql = "select * from shops,commodity where shops.shopID=commodity.shopID and shops.shopID=? ;";
-		Object[] p = {shopID};
-		List<Object[]> lists = ApacheDbutil.Query(sql, p);
-		return lists;
-	}
+        String sql = "select * from shops,commodity where shops.shopID=commodity.shopID and shops.shopID=? ;";
+        Object[] p = {shopID};
+        List<Object[]> lists = ApacheDbutil.Query(sql, p);
+        return lists;
+    }
 
 	// ���ݵ���id��ѯ����
 	public List<Object[]> queryByShopManager(String userID) {
-		String sql = "select * from shops,commodity where shops.shopID=commodity.shopID and shops.shopManager=? ;";
-		Object[] p = {userID};
-		List<Object[]> lists = ApacheDbutil.Query(sql, p);
-		return lists;
-	}
+        String sql = "select * from shops,commodity where shops.shopID=commodity.shopID and shops.shopManager=? ;";
+        Object[] p = {userID};
+        List<Object[]> lists = ApacheDbutil.Query(sql, p);
+        return lists;
+    }
 
 	// findall
 	public List<Shop> findAll() {
@@ -65,17 +65,17 @@ public class ShopDaoImpl implements ShopDao {
 
 	//�̵�id���ҵ�����Ϣ
 	public Shop queryByShopId(int shopID) {
-		String[] keys1 = {"shopID"};//��ѯ����
-		Object[] params1 = {shopID};//������ֵ
-		Shop shop = (Shop) ApacheDbutil.querySingle("shops", keys1, params1);
-		return shop;
-	}
+        String[] keys1 = {"shopID"};//��ѯ����
+        Object[] params1 = {shopID};//������ֵ
+        Shop shop = (Shop) ApacheDbutil.querySingle("shops", keys1, params1);
+        return shop;
+    }
 
-	//����id���ҵ�����Ϣ
+    //����id���ҵ�����Ϣ
 	public Shop queryByShopmanager(String userID) {
-		String[] keys1 = {"shopManager"};//��ѯ����
-		Object[] params1 = {userID};//������ֵ
-		Shop shop = (Shop) ApacheDbutil.querySingle("shops", keys1, params1);
-		return shop;
-	}
+        String[] keys1 = {"shopManager"};//��ѯ����
+        Object[] params1 = {userID};//������ֵ
+        Shop shop = (Shop) ApacheDbutil.querySingle("shops", keys1, params1);
+        return shop;
+    }
 }

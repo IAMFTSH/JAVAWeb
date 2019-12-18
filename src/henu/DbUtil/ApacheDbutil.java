@@ -214,7 +214,7 @@ public class ApacheDbutil {
             }
         } else if (tableType == "orders") {
             Order order = (Order) object;
-            sql = "insert into " + tableType + " values(?,?,sysdate())";
+            sql = "insert into " + tableType + " values(?,?,sysdate(),0)";
             parmas = new Object[]{order.getOrderID(), order.getUserID()};
             try {
                 return queryRunner.update(sql, parmas);
@@ -232,8 +232,8 @@ public class ApacheDbutil {
             }
         } else if (tableType == "commodity") {
             Commodity commodity = (Commodity) object;
-            sql = "insert into " + tableType + " values(?,?,?,?)";
-            parmas = new Object[]{commodity.getCommodityID(), commodity.getShopID(), commodity.getCommodityName(), commodity.getCommodityNumber(), commodity.getCommodityPrice()};
+            sql = "insert into " + tableType + " values(?,?,?,?,?,?,?)";
+            parmas = new Object[]{commodity.getCommodityID(), commodity.getShopID(), commodity.getCommodityName(), commodity.getCommodityPrice(), commodity.getCommodityNumber(), commodity.getCommodityIntroduce(), commodity.getCommodityImage()};
             try {
                 return queryRunner.update(sql, parmas);
             } catch (SQLException e) {
@@ -337,9 +337,9 @@ public class ApacheDbutil {
             Shop shop = (Shop) object;
             params = new Object[]{shop.getShopName(), shop.getShopManager(), shop.getShopID()};
         } else if (tableType == "orders") {
-            sql += "userID=? where orderID=?";
+            sql += "userID=? , orderState=?  where orderID=?";
             Order order = (Order) object;
-            params = new Object[]{order.getUserID()};
+            params = new Object[]{order.getUserID(), order.getOrderState(), order.getOrderID()};
         } else if (tableType == "commodity") {
             sql += "shopID=?,commodityName=?,commodityPrice=?,commodityNumber=? where commodityID=?";
             Commodity commodity = (Commodity) object;
@@ -348,6 +348,10 @@ public class ApacheDbutil {
             sql += "userName=?,userSex=?,userAddress=? where userID=?";
             UserInformation userInformation = (UserInformation) object;
             params = new Object[]{userInformation.getUserName(), userInformation.getUserSex(), userInformation.getUserAddress(), userInformation.getUserID()};
+        } else if (tableType == "shopping_car") {
+            sql += "num=? where userID=? and commodityID=?";
+            ShoppingCar shoppingCar = (ShoppingCar) object;
+            params = new Object[]{shoppingCar.getNum(), shoppingCar.getUserID(), shoppingCar.getCommodityID()};
         }
         try {
             return queryRunner.update(sql, params);
@@ -380,7 +384,7 @@ public class ApacheDbutil {
     }
 
     /**
-     * 删除
+     * 删除--单表单条件删除
      *
      * @param tableType
      * @param key       传入关键字
@@ -394,6 +398,30 @@ public class ApacheDbutil {
                 sql += "?)";
             } else
                 sql += "?,";
+        }
+        try {
+            return queryRunner.update(sql, params);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    /**
+     * 删除-单表多条件删除
+     *
+     * @param tableType
+     * @param key       传入关键字
+     * @param params    传入需要删除的值的数组
+     * @return
+     */
+    public static int delete1(String tableType, String[] key, Object[] params) {
+        String sql = "delete from " + tableType + " where ";//+ key + " in(";
+        for (int i = 0; i < params.length; i++) {
+            if (i == (key.length - 1)) {
+                sql += key[i] + "=?";
+            } else
+                sql += key[i] + "=? and ";
         }
         try {
             return queryRunner.update(sql, params);

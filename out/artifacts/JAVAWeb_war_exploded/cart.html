@@ -7,150 +7,137 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/cart.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/cart.css"/>
 </header>
+<style>
+    .modal.fade {
+        top: 15%;
+    }
+</style>
+<body>
+<!--<div id="successTip " class="alert alert-success" style="top: 50%;display: none">-->
+<!--    <a href="#" class="close" data-dismiss="alert">&times;</a>-->
+<!--    <strong>删除成功！</strong>-->
+<!--</div>-->
+<span id="userID"></span>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="mall.jsp">首页<span class="sr-only">(current)</span></a>
+        </div>
 
-<body class="container">
-<table id="cartTable" class="cart table table-striped table-hover table-condensed ">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul id = "Navigation"class="nav navbar-nav">
+                <li>
+                    < a href="#" >个人中心</a>
+                </li>
+                <li id="shop" style="display:none;">
+                    <a class="cursor" value="" onclick="shop(this);">我的店铺</a>
+                </li>
+                <li>
+                    <a href="#">购物车</a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+                <span class="glyphicon glyphicon-user">&nbsp;<a class = "btn btn-default" id="login"  data-toggle="modal" data-target="#loginModal">登录</a></span>
+            </form>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<table id="cartTable" class="table table-hover table-condensed" style="margin-top: 5%;margin-bottom: 6%">
     <thead>
-    <tr>
-        <th style="width:60px;text-align: center"></th>
-        <th style="width:300px;text-align: center"><label>产品</label></th>
-        <th style="width:320px;text-align: center"><label>单价</label></th>
-        <th style="width:100px;text-align: center"><label>数量</label></th>
-        <th style="width:100px;text-align: center"><label>小计</label></th>
-        <th style="width:40px;text-align: center"><label>操作</label></th>
+    <tr style="border-color: slategrey;">
+        <th style="width:5%;text-align: center"></th>
+        <th style="width:10%;text-align: center"><label>产品</label></th>
+        <th style="width:30%;text-align: center"><label>参数</label></th>
+        <th style="width:15%;text-align: center"><label>单价</label></th>
+        <th style="width:5%;text-align: center"><label>数量</label></th>
+        <th style="width:5%;text-align: center"><label>小计</label></th>
+        <th style="width:5%;text-align: center"><label>操作</label></th>
     </tr>
     </thead>
-    <tbody style="text-align: center">
-    <tr>
-        <td><input class="check-one check" type="checkbox" style="padding-top: 50px"></td>
-        <td class="goods">
-            <div>
-                <img src="images/a.png" style="width: 100px;height: 100px">
-                <span>Item 1</span>
-            </div>
-        </td>
-        <td class="number small-bold-red">
-            <div style="color: red;font-weight: bold">
-                <span>100</span>
-                <span>元</span>
-            </div>
-        </td>
-        <td class="input-group">
-            <span class="btn input-group-addon minus" style="text-align: center">-</span>
-            <input type="text" class="number form-control input-sm" value="10"/>
-            <span class="btn input-group-addon plus" style="text-align: center" onclick="addButton(this)">+</span>
-        </td>
-        <td class="subtotal number small-bold-red">
-            <div style="color: red;font-weight: bold">
-                <span>￥</span>
-                <span>100</span>
-            </div>
-        </td>
-        <td class="operation">
-            <button class="delete btn btn-xs btn-primary">删除</button>
-        </td>
-    </tr>
-    <tr>
-        <td><input class="check-one check" type="checkbox" style="top: 40px;position: relative;"></td>
-        <td class="goods">
-            <div>
-                <img src="images/a.png" style="width: 100px;height: 100px">
-                <span>Item 1</span>
-            </div>
-        </td>
-        <td class="number small-bold-red">
-            <div style="color: red;font-weight: bold;top: 40px;position: relative;">
-                <span>100</span>
-                <span>元</span>
-            </div>
-        </td>
-        <td class="input-group">
-            <span class="btn input-group-addon minus" style="text-align: center;top: 30px;position: relative;">-</span>
-            <input type="text" class="number form-control input-sm" value="10" style="top: 30px;position: relative;"/>
-            <span class="btn input-group-addon plus" style="text-align: center;top: 30px;position: relative;" onclick="addNum(this)">+</span>
-        </td>
-        <td class="subtotal number small-bold-red">
-            <div style="color: red;font-weight: bold;top: 35px;position: relative;">
-                <span>￥</span>
-                <span>100</span>
-            </div>
-        </td>
-        <td class="operation">
-            <button class="delete btn btn-xs btn-primary" style="top: 35px;position: relative;">删除</button>
-        </td>
-    </tr>
-    <!--    <tr>-->
-    <!--        <td><input class="check-one check" type="checkbox"/></td>-->
-    <!--        <td class="goods">-->
-    <!--            <label>Item 2</label>-->
-    <!--        </td>-->
-    <!--        <td class="number small-bold-red"><span>1100</span></td>-->
-    <!--        <td class="input-group">-->
-    <!--            <span class="input-group-addon minus">-</span>-->
-    <!--            <input type="text" class="number form-control input-sm" value="1"/>-->
-    <!--            <span class="input-group-addon plus">+</span>-->
-    <!--        </td>-->
-    <!--        <td class="subtotal number small-bold-red">352</td>-->
-    <!--        <td class="operation"><span class="delete btn btn-xs btn-primary">删除</span></td>-->
-    <!--    </tr>-->
-    <!--    <tr>-->
-    <!--        <td><input class="check-one check" type="checkbox"/></td>-->
-    <!--        <td class="goods">-->
-    <!--            <label>Item 3</label>-->
-    <!--        </td>-->
-    <!--        <td class="number small-bold-red"><span>1200</span></td>-->
-    <!--        <td class="input-group">-->
-    <!--            <span class="input-group-addon minus">-</span>-->
-    <!--            <input type="text" class="number form-control input-sm" value="1"/>-->
-    <!--            <span class="input-group-addon plus">+</span>-->
-    <!--        </td>-->
-    <!--        <td class="subtotal number small-bold-red">9876.55</td>-->
-    <!--        <td class="operation"><span class="delete btn btn-xs btn-primary">删除</span></td>-->
-    <!--    </tr>-->
-    <!--    <tr>-->
-    <!--        <td><input class="check-one check" type="checkbox"/></td>-->
-    <!--        <td class="goods">-->
-    <!--            <label>Item 4</label>-->
-    <!--        </td>-->
-    <!--        <td class="number small-bold-red"><span>1400</span></td>-->
-    <!--        <td class="input-group">-->
-    <!--            <span class="input-group-addon minus">-</span>-->
-    <!--            <input type="text" class="number form-control input-sm" value="1"/>-->
-    <!--            <span class="input-group-addon plus">+</span>-->
-    <!--        </td>-->
-    <!--        <td class="subtotal number small-bold-red">9876.55</td>-->
-    <!--        <td class="operation"><span class="delete btn btn-xs btn-primary">删除</span></td>-->
-    <!--    </tr>-->
+    <tbody id="goodList" style="text-align: center;">
     </tbody>
 </table>
 
-<div class="row">
-    <div class="col-md-12 col-lg-12 col-sm-12">
-        <div style="border-top:1px solid gray;padding:4px 10px;">
-            <div class="pull-left" style="padding: 0px 20px 0px 20px">
-                <input class="check-all check" type="checkbox" id="selectAll"/>
-                <span>全选</span>
+<!--<div class="row">-->
+<!--    <div class="col-md-12 col-lg-12 col-sm-12">-->
+<!--        <div style="border-top:1px solid gray;padding:4px 10px;">-->
+<div class="panel panel-default panel-body bottom-menu-include navbar-fixed-bottom"
+     style="bottom:3%;background-color:#e5e5e5;padding: 0px 0px 0px 0px;width: 90%;margin-left: 5%">
+    <div class="pull-left" style="padding: 10px 20px 0px 10px;margin: 10px 10px 10px 15px;">
+        <input class="check-all check" type="checkbox" id="selectAll" STYLE="margin-right: 5PX;"/>
+        <span>全选</span>
+    </div>
+    <div class="pull-left" style="padding: 10px 20px 0px 10px;margin: 10px 10px 10px 0px;">
+        <button class="btn btn-link" style="padding: 0px 0px">批量删除</button>
+    </div>
+    <div class="pull-right">
+        <button class="submitDis" data-toggle="modal" data-target="#submit" id="submitBackground" style="border:0px;color: white;font-size: 20px;font-weight: bold;padding: 20px 50px;background-color: #B0B0B0">购买</button>
+    </div>
+    <div class="pull-right" style="margin: 20px 50px 10px 50px">
+        <span>共计</span>
+        <span id="allMonery" style="color: red;font-weight: bold;">0</span>
+        <span style="color: red;font-weight: bold;">￥</span>
+    </div>
+    <div class="pull-right" style="margin: 20px 50px 10px 50px">
+        <span>您已选择</span>
+        <span id="goodAllCounts" style="margin:0 4px;color: red;font-weight: bold;">0</span>
+        <span>件商品</span>
+    </div>
+</div>
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="submitModal"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                </button>
+                <h4 class="modal-title" id="submitModal">
+                    确认订单
+                </h4>
             </div>
-            <div class="pull-left" style="padding: 0px 20px 0px 20px">
-                <button class="btn-xs btn-primary">批量删除</button>
+            <div class="modal-body">
+                <form class="bs-example bs-example-form" role="form">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"> 客 户 </span>
+                        <input id="username" type="text" class="form-control" value="" disabled="disabled">
+                    </div>
+                    <br>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon">收获地址</span>
+                        <input id="address" type="text" class="form-control" value="" disabled="disabled">
+                    </div>
+                    <br>
+                </form>
             </div>
-            <div style="margin-left:20px;" class="pull-right total">
-                <label>金额合计:<span class="currency">￥</span><span id="priceTotal"
-                                                                 class="large-bold-red">0.00</span></label>
-            </div>
-            <div class="pull-right">
-                <label>您选择了<span id="itemCount" class="large-bold-red" style="margin:0 4px;"></span>种产品型号，共计<span
-                        id="qtyCount" class="large-bold-red" style="margin:0 4px;"></span>件</label>
-            </div>
-            <div class="pull-right selected" id="selected">
-                <span id="selectedTotal"></span>
+            <div class="modal-footer">
+                    <div>
+                        <span style="color: red;font-weight: bold;top:10px">合计</span>
+                        <span id="modalMoney" style="color: red;font-weight: bold;top:10px">220</span>
+                        <span style="color: red;font-weight: bold;top:10px">￥</span>
+                        <button id="createOrder" type="button" class="btn btn-success" data-dismiss="modal">提交订单</button>
+                    </div>
             </div>
         </div>
     </div>
-</div>
-<div>
-    <button class="btn btn-success pull-right" style="padding: 10px 50px">购买</button>
 </div>
 </body>
 

@@ -8,15 +8,15 @@ public class Order {
     private Date orderDate;
     private int orderState;
 
+    public Order() {
+    }
+
     public int getOrderState() {
         return orderState;
     }
 
     public void setOrderState(int orderState) {
         this.orderState = orderState;
-    }
-
-    public Order() {
     }
 
     public Order(int orderID, String userID, Date orderDate) {

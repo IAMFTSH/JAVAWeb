@@ -5,15 +5,15 @@ public class ShoppingCar {
     private int commodityID;
     private int num;
 
+    public ShoppingCar() {
+    }
+
     public int getNum() {
         return num;
     }
 
     public void setNum(int num) {
         this.num = num;
-    }
-
-    public ShoppingCar() {
     }
 
     public ShoppingCar(String userID, int commodityID) {

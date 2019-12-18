@@ -9,6 +9,9 @@ public class Commodity {
     private String commodityIntroduce;
     private String commodityImage;
 
+    public Commodity() {
+    }
+
     public String getCommodityImage() {
         return commodityImage;
     }
@@ -23,9 +26,6 @@ public class Commodity {
 
     public void setCommodityIntroduce(String commodityIntroduce) {
         this.commodityIntroduce = commodityIntroduce;
-    }
-
-    public Commodity() {
     }
 
     public Commodity(int commodityID, int shopID, String commodityName, int commodityPrice, int commodityNumber) {

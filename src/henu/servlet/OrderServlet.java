@@ -1,4 +1,4 @@
-﻿package henu.servlet;
+package henu.servlet;
 
 import henu.bean.Order;
 import henu.bean.OrderCommodity;
@@ -32,17 +32,21 @@ public class OrderServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 * response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		action(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 * response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		action(request, response);
 	}
@@ -55,7 +59,8 @@ public class OrderServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void action(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String method = request.getParameter("method");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json; charset=utf-8");
@@ -73,21 +78,11 @@ public class OrderServlet extends HttpServlet {
 	}
 
 	/**
-	 * 所有订单及其信息
-	 * json数组[{
-	 * "orderID":"[订单id]",
-	 * "userID":"[用户id]",
-	 * "orderDate":"[订单创建日期]",
-	 * "orderState":"[订单状态]",
-	 * "commodityID":"[商品id]",
-	 * "number":"[购买数量]",
-	 * "shopID":"[商店id]",
-	 * "commodityName":"[商品名称]",
-	 * "commodityPrice":"[商品单价]",
-	 * "commodityNumber":"[商品剩余]",
-	 * "commodityIntroduce":"[商品简介]",
-	 * "commodityImage":"[商品图片路径]"
-	 * }]
+	 * 所有订单及其信息 json数组[{ "orderID":"[订单id]", "userID":"[用户id]",
+	 * "orderDate":"[订单创建日期]", "orderState":"[订单状态]", "commodityID":"[商品id]",
+	 * "number":"[购买数量]", "shopID":"[商店id]", "commodityName":"[商品名称]",
+	 * "commodityPrice":"[商品单价]", "commodityNumber":"[商品剩余]",
+	 * "commodityIntroduce":"[商品简介]", "commodityImage":"[商品图片路径]" }]
 	 *
 	 * @param request
 	 * @param response
@@ -96,24 +91,22 @@ public class OrderServlet extends HttpServlet {
 	 */
 	protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Object[]> list = DaoFactory.getOrderDaoImpl().findAll();
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("application/json; charset=utf-8");
 		JSONObject jsonObject = new JSONObject();
 		PrintWriter writer = response.getWriter();
 		JSONArray jsonArray = new JSONArray();
 		for (Object[] object : list) {
-			jsonObject.put("orderID", object[0]);//订单id
-			jsonObject.put("userID", object[1]);//用户id
-			jsonObject.put("orderDate", object[2]);//订单创建日期
-			jsonObject.put("orderState", object[3]);//订单状态
-			jsonObject.put("commodityID", object[5]);//商品id
-			jsonObject.put("number", object[6]);//购买数量
-			jsonObject.put("shopID", object[8]);//商店id
-			jsonObject.put("commodityName", object[9]);//商品名称
-			jsonObject.put("commodityPrice", object[10]);//商品单价
-			jsonObject.put("commodityNumber", object[11]);//商品剩余
-			jsonObject.put("commodityIntroduce", object[12]);//商品简介
-			jsonObject.put("commodityImage", object[13]);//商品图片路径
+			jsonObject.put("orderID", object[0]);// 订单id
+			jsonObject.put("userID", object[1]);// 用户id
+			jsonObject.put("orderDate", object[2].toString());// 订单创建日期
+			jsonObject.put("orderState", object[3]);// 订单状态
+			jsonObject.put("commodityID", object[5]);// 商品id
+			jsonObject.put("number", object[6]);// 购买数量
+			jsonObject.put("shopID", object[8]);// 商店id
+			jsonObject.put("commodityName", object[9]);// 商品名称
+			jsonObject.put("commodityPrice", object[10]);// 商品单价
+			jsonObject.put("commodityNumber", object[11]);// 商品剩余
+			jsonObject.put("commodityIntroduce", object[12]);// 商品简介
+			jsonObject.put("commodityImage", object[13]);// 商品图片路径
 			jsonArray.add(jsonObject);
 		}
 		writer.print(jsonArray);
@@ -121,50 +114,42 @@ public class OrderServlet extends HttpServlet {
 	}
 
 	/**
-	 * 根据用户id查询订单及其信息（传入userID，未传入则返回json{"result":"false"}）
-	 * 输出json数组[{
-	 * "orderID":"[订单id]",
-	 * "userID":"[用户id]",
-	 * "orderDate":"[订单创建日期]",
-	 * "orderState":"[订单状态]",
-	 * "commodityID":"[商品id]",
-	 * "number":"[购买数量]",
-	 * "shopID":"[商店id]",
-	 * "commodityName":"[商品名称]",
-	 * "commodityPrice":"[商品单价]",
-	 * "commodityNumber":"[商品剩余]",
-	 * "commodityIntroduce":"[商品简介]",
-	 * "commodityImage":"[商品图片路径]"
-	 * }]
+	 * 根据用户id查询订单及其信息（传入userID，未传入则返回json{"result":"false"}） 输出json数组[{
+	 * "orderID":"[订单id]", "userID":"[用户id]", "orderDate":"[订单创建日期]",
+	 * "orderState":"[订单状态]", "commodityID":"[商品id]", "number":"[购买数量]",
+	 * "shopID":"[商店id]", "commodityName":"[商品名称]", "commodityPrice":"[商品单价]",
+	 * "commodityNumber":"[商品剩余]", "commodityIntroduce":"[商品简介]",
+	 * "commodityImage":"[商品图片路径]" }]
 	 *
 	 * @param request
 	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void queryByUserID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void queryByUserID(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String userID = "";
 		PrintWriter writer = response.getWriter();
 		if (request.getParameter("userID") != null) {
-			userID = request.getParameter("userID");//获取用户id
+			userID = request.getParameter("userID");// 获取用户id
 			List<Object[]> list = DaoFactory.getOrderDaoImpl().queryByUser(userID);
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("application/json; charset=utf-8");
 			JSONObject jsonObject = new JSONObject();
 			JSONArray jsonArray = new JSONArray();
 			for (Object[] object : list) {
-				jsonObject.put("orderID", object[0]);//订单id
-				jsonObject.put("userID", object[1]);//用户id
-				jsonObject.put("orderDate", object[2]);//订单创建日期
-				jsonObject.put("orderState", object[3]);//订单状态
-				jsonObject.put("commodityID", object[5]);//商品id
-				jsonObject.put("number", object[6]);//购买数量
-				jsonObject.put("shopID", object[8]);//商店id
-				jsonObject.put("commodityName", object[9]);//商品名称
-				jsonObject.put("commodityPrice", object[10]);//商品单价
-				jsonObject.put("commodityNumber", object[11]);//商品剩余
-				jsonObject.put("commodityIntroduce", object[12]);//商品简介
-				jsonObject.put("commodityImage", object[13]);//商品图片路径
+				jsonObject.put("orderID", object[0]);// 订单id
+				jsonObject.put("userID", object[1]);// 用户id
+				jsonObject.put("orderDate", object[2].toString());// 订单创建日期
+				jsonObject.put("orderState", object[3]);// 订单状态
+				jsonObject.put("commodityID", object[5]);// 商品id
+				jsonObject.put("number", object[6]);// 购买数量
+				jsonObject.put("shopID", object[8]);// 商店id
+				jsonObject.put("commodityName", object[9]);// 商品名称
+				jsonObject.put("commodityPrice", object[10]);// 商品单价
+				jsonObject.put("commodityNumber", object[11]);// 商品剩余
+				jsonObject.put("commodityIntroduce", object[12]);// 商品简介
+				jsonObject.put("commodityImage", object[13]);// 商品图片路径
 				jsonArray.add(jsonObject);
 			}
 			writer.print(jsonArray);
@@ -176,7 +161,7 @@ public class OrderServlet extends HttpServlet {
 	}
 
 	/**
-	 * 根据当前购物车信息 创建订单(传入用户id)
+	 * 创建订单(传入用户id,需要购买的商品id数组)
 	 *
 	 * @param request
 	 * @param response
@@ -186,84 +171,103 @@ public class OrderServlet extends HttpServlet {
 	protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter writer = response.getWriter();
 		JSONObject json = new JSONObject();
-		if (request.getParameter("userID") == null) {
-			json.put("result", false);
-		} else {
-			String userID = request.getParameter("userID");
-			List<Object[]> list = DaoFactory.getShoppingCarDaoImpl().queryMyShoppingCar(userID);
-			for (Object[] object : list) {
-				/*
-				jsonObject.put("userID", object[0]);
-				jsonObject.put("commodityID", object[1]);
-				jsonObject.put("num", object[2]);
-				jsonObject.put("shopManager", object[12]);
-				jsonObject.put("shopID", object[4]);
-				jsonObject.put("commodityName", object[5]);
-				jsonObject.put("commodityPrice", object[6]);
-				jsonObject.put("commodityNumber", object[7]);
-				jsonObject.put("commodityIntroduce", object[8]);
-				jsonObject.put("commodityImage", object[9]);
-				jsonObject.put("shopName", object[11]);
-				*/
-				Order order = new Order();
-				order.setOrderID(DaoFactory.getOrderDaoImpl().queryMaxID() + 1);
-				order.setOrderDate(new Date());
-				order.setOrderState(0);
-				order.setUserID(userID);
-				OrderCommodity orderCommodity = new OrderCommodity();
-				orderCommodity.setCommodityID((Integer) object[1]);
-				orderCommodity.setNumber((Integer) object[2]);
-				orderCommodity.setOrderID(order.getOrderID());
-				DaoFactory.getOrderDaoImpl().addOrder(order);
-				DaoFactory.getOrderDaoImpl().addOrderCommodity(orderCommodity);
+		if (request.getParameter("json") != "") {
+			JSONArray jsonArray = JSONArray.fromObject(request.getParameter("json"));// 获取json数据
+			String userID = jsonArray.getJSONObject(0).get("userID").toString();
+			int orderID = DaoFactory.getOrderDaoImpl().queryMaxID() + 1;
+			for (int i = 1; i < jsonArray.size(); i++) {
+				List<Object[]> list = DaoFactory.getShoppingCarDaoImpl().queryMyShoppingCar(userID,
+						Integer.parseInt(jsonArray.getJSONObject(i).get("commodity").toString()));
+				System.out.println(list.toString());
+				System.out.println(userID);
+				System.out.println(Integer.parseInt(jsonArray.getJSONObject(i).get("commodity").toString()));
+				for (Object[] object : list) {
+					/*
+					 * jsonObject.put("userID", object[0]); jsonObject.put("commodityID",
+					 * object[1]); jsonObject.put("num", object[2]); jsonObject.put("shopManager",
+					 * object[12]); jsonObject.put("shopID", object[4]);
+					 * jsonObject.put("commodityName", object[5]); jsonObject.put("commodityPrice",
+					 * object[6]); jsonObject.put("commodityNumber", object[7]);
+					 * jsonObject.put("commodityIntroduce", object[8]);
+					 * jsonObject.put("commodityImage", object[9]); jsonObject.put("shopName",
+					 * object[11]);
+					 */
+					Order order = new Order();
+					order.setOrderID(orderID);
+					order.setOrderDate(new Date());
+					order.setOrderState(0);
+					order.setUserID(userID);
+					OrderCommodity orderCommodity = new OrderCommodity();
+					orderCommodity.setCommodityID((Integer) object[1]);
+					orderCommodity.setNumber((Integer) object[2]);
+					orderCommodity.setOrderID(order.getOrderID());
+					System.out.println(order.toString());
+					if (DaoFactory.getOrderDaoImpl().addOrder(order) != 0) {
+						json.put("result", true);
+					}
+					if (DaoFactory.getOrderDaoImpl().addOrderCommodity(orderCommodity) != 0) {
+						json.put("result", true);
+					} else {
+						json.put("result", false);
+					}
+				}
 			}
-			json.put("result", true);
+		} else {
+			json.put("result", false);
 		}
+
 		writer.print(json);
 	}
 
 	/**
-	 * 删除订单(订单id)
-	 * json:{"result":"true/false"}
+	 * 删除订单(订单id) json:{"result":"true/false"}
 	 *
 	 * @param request
 	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void delete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		PrintWriter writer = response.getWriter();
 		JSONObject json = new JSONObject();
-		if (request.getParameter("orderID") == null) {
+		if (request.getParameter("orderID") == "") {
 			json.put("result", false);
 		} else {
-			int orderID = Integer.parseInt(request.getParameter("orderID"));
-			DaoFactory.getOrderDaoImpl().delete(orderID);
-			json.put("result", true);
+			int orderID = Integer.parseInt(request.getParameter("orderID"));// 获取订单id
+			if (DaoFactory.getOrderDaoImpl().delete(orderID) != 0) {
+				json.put("result", true);
+			} else {
+				json.put("result", false);
+			}
 		}
 		writer.print(json);
 	}
 
 	/**
 	 * 修改订单(订单id,要改成的订单状态orderState[0未付款][1已付款][2已发货][3已确认收货][4请求退货][5正在受理退货][6已退货])
-	 * json:{"result":"true/false"}
-	 * 可修改：订单状态
+	 * json:{"result":"true/false"} 可修改：订单状态
 	 *
 	 * @param request
 	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void update(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		PrintWriter writer = response.getWriter();
 		JSONObject json = new JSONObject();
-		if (request.getParameter("orderID") == null || request.getParameter("orderState") == null) {
+		if (request.getParameter("orderID") == "" || request.getParameter("orderState") == "") {
 			json.put("result", false);
 		} else {
 			int orderID = Integer.parseInt(request.getParameter("orderID"));
 			int orderState = Integer.parseInt(request.getParameter("orderState"));
-			DaoFactory.getOrderDaoImpl().update(orderID, orderState);
-			json.put("result", true);
+			if (DaoFactory.getOrderDaoImpl().update(orderID, orderState) != 0) {
+				json.put("result", true);
+			} else {
+				json.put("result", false);
+			}
 		}
 		writer.print(json);
 	}

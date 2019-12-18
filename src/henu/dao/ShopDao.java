@@ -1,79 +1,79 @@
 package henu.dao;
 
 
-import java.util.List;
-
 import henu.bean.Shop;
+
+import java.util.List;
 
 public interface ShopDao {
 
-	/**
-	 * �����̵�
-	 *
-	 * @param shop
-	 * @return
-	 */
-	public int addShop(Shop shop);
+    /**
+     * �����̵�
+     *
+     * @param shop
+     * @return
+     */
+    int addShop(Shop shop);
 
-	/**
-	 * ɾ���̵�
-	 *
-	 * @param shopID
-	 * @return
-	 */
-	public int delete(int shopID);
+    /**
+     * ɾ���̵�
+     *
+     * @param shopID
+     * @return
+     */
+    int delete(int shopID);
 
-	/**
-	 * �޸��̵�
-	 *
-	 * @param shop
-	 * @return
-	 */
-	public int update(Shop shop);
+    /**
+     * �޸��̵�
+     *
+     * @param shop
+     * @return
+     */
+    int update(Shop shop);
 
-	/**
-	 * �̵�id���ҵ�����Ʒ��Ϣ
-	 *
-	 * @param shopID
-	 * @return List<Object [ ]>
-	 */
-	public List<Object[]> queryByShopID(int shopID);
+    /**
+     * �̵�id���ҵ�����Ʒ��Ϣ
+     *
+     * @param shopID
+     * @return List<Object [ ]>
+     */
+    List<Object[]> queryByShopID(int shopID);
 
-	/**
-	 * ����id���ҵ�����Ʒ��Ϣ
-	 *
-	 * @param userID
-	 * @return List<Object [ ]>
-	 */
-	public List<Object[]> queryByShopManager(String userID);
+    /**
+     * ����id���ҵ�����Ʒ��Ϣ
+     *
+     * @param userID
+     * @return List<Object [ ]>
+     */
+    List<Object[]> queryByShopManager(String userID);
 
-	/**
-	 * ��ѯ�����̵���Ϣ
-	 *
-	 * @return
-	 */
-	public List<Shop> findAll();
+    /**
+     * ��ѯ�����̵���Ϣ
+     *
+     * @return
+     */
+    List<Shop> findAll();
 
-	/**
-	 * ��ѯĿǰ���id
-	 *
-	 * @return
-	 */
-	public int queryMaxID();
+    /**
+     * ��ѯĿǰ���id
+     *
+     * @return
+     */
+    int queryMaxID();
 
-	/**
-	 * �̵�id���ҵ�����Ϣ
-	 *
-	 * @param shopID
-	 * @return Shop
-	 */
-	public Shop queryByShopId(int shopID);
+    /**
+     * �̵�id���ҵ�����Ϣ
+     *
+     * @param shopID
+     * @return Shop
+     */
+    Shop queryByShopId(int shopID);
 
-	/**
-	 * ����id���ҵ�����Ϣ
-	 *
-	 * @param userID
-	 * @return Shop
-	 */
-	public Shop queryByShopmanager(String userID);
+    /**
+     * ����id���ҵ�����Ϣ
+     *
+     * @param userID
+     * @return Shop
+     */
+    Shop queryByShopmanager(String userID);
 }

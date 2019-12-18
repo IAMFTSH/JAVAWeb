@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="JAVAWeb:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/JAVAWeb_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="JAVAWeb/web/Web" />
+      <element id="javaee-facet-resources" facet="shopping_mall/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="JAVAWeb" />
+          <element id="module-output" name="shopping_mall" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="lib" />

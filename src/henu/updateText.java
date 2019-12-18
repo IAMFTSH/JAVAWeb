@@ -1,7 +1,6 @@
 package henu;
 
 import henu.DbUtil.ApacheDbutil;
-import henu.bean.ShoppingCar;
 
 public class updateText {
     public static void main(String[] args) {

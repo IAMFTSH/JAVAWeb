@@ -1,9 +1,7 @@
 package henu;
 
 import henu.DbUtil.ApacheDbutil;
-import henu.bean.Order;
 import henu.bean.ShoppingCar;
-import henu.bean.User;
 
 public class insertText {
     public static void main(String[] args) {

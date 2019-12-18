@@ -1,19 +1,19 @@
-﻿package henu.servlet;
+package henu.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import henu.bean.Commodity;
+import henu.bean.Shop;
+import henu.factory.DaoFactory;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import henu.bean.Commodity;
-import henu.factory.DaoFactory;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * Servlet implementation class CommodityServlet
@@ -32,7 +32,7 @@ public class CommodityServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 * response)
+	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -42,7 +42,7 @@ public class CommodityServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 * response)
+	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -99,6 +99,9 @@ public class CommodityServlet extends HttpServlet {
 			jsonObject.put("commodityNumber", commodity.getCommodityNumber());
 			jsonObject.put("commodityImage", commodity.getCommodityImage());
 			jsonObject.put("shopID", commodity.getShopID());
+			Shop shop = DaoFactory.getShopDaoImpl().queryByShopId(commodity.getShopID());
+			jsonObject.put("shopName", shop.getShopName());
+			jsonObject.put("shopManager", shop.getShopManager());
 			jsonObject.put("commodityIntroduce", commodity.getCommodityIntroduce());
 			jsonObject.put("commodityPrice", commodity.getCommodityPrice());
 			jsonArray.add(jsonObject);
@@ -115,6 +118,7 @@ public class CommodityServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		JSONObject json = new JSONObject();
 		Commodity commodity = new Commodity();
 		commodity.setCommodityID(DaoFactory.getCommodityDaoImpl().queryMaxID() + 1);
 		commodity.setCommodityImage(request.getParameter("commodityImage"));// 获取商品图片路径
@@ -123,10 +127,12 @@ public class CommodityServlet extends HttpServlet {
 		commodity.setShopID(Integer.parseInt(request.getParameter("shopID")));// 获取商店id
 		commodity.setCommodityNumber(Integer.parseInt(request.getParameter("commodityNumber")));// 获取商品数量
 		commodity.setCommodityPrice(Integer.parseInt(request.getParameter("commodityPrice")));// 获取商品单价
-		DaoFactory.getCommodityDaoImpl().addCommodity(commodity);
+		if (DaoFactory.getCommodityDaoImpl().addCommodity(commodity) != 1) {
+			json.put("result", true);
+		} else {
+			json.put("result", false);
+		}
 		PrintWriter writer = response.getWriter();
-		JSONObject json = new JSONObject();
-		json.put("result", true);
 		writer.print(json);
 	}
 
@@ -144,9 +150,8 @@ public class CommodityServlet extends HttpServlet {
 		int result = DaoFactory.getCommodityDaoImpl().deleteByID(commodityID);
 		PrintWriter writer = response.getWriter();
 		JSONObject json = new JSONObject();
-		if (result == 1) {
+		if (result != 0) {
 			json.put("result", true);
-
 		} else {
 			json.put("result", false);
 		}
@@ -163,27 +168,35 @@ public class CommodityServlet extends HttpServlet {
 	 */
 	protected void update(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int commodityID = Integer.parseInt(request.getParameter("commodityID"));// 获取商品id
-		Commodity commodity = DaoFactory.getCommodityDaoImpl().queryByCommodityID(commodityID);
 		JSONObject json = new JSONObject();
-		if (request.getParameter("commodityName") != null && request.getParameter("commodityName") != "") {// 更新商品名称
-			commodity.setCommodityName(request.getParameter("commodityName"));
+		int commodityID = Integer.parseInt(request.getParameter("commodityID"));// 获取商品id
+		if (DaoFactory.getCommodityDaoImpl().queryByCommodityID(commodityID) != null) {
+			Commodity commodity = DaoFactory.getCommodityDaoImpl().queryByCommodityID(commodityID);
+			if (request.getParameter("commodityName") != null && request.getParameter("commodityName") != "") {// 更新商品名称
+				commodity.setCommodityName(request.getParameter("commodityName"));
+			}
+			if (request.getParameter("commodityImage") != null && request.getParameter("commodityImage") != "") {// 更新商品图片路径
+				commodity.setCommodityImage(request.getParameter("commodityImage"));
+			}
+			if (request.getParameter("commodityIntroduce") != null
+					&& request.getParameter("commodityIntroduce") != "") {// 更新商品简介
+				commodity.setCommodityIntroduce(request.getParameter("commodityIntroduce"));
+			}
+			if (request.getParameter("commodityPrice") != null && request.getParameter("commodityPrice") != "") {// 更新商品单价
+				commodity.setCommodityPrice(Integer.parseInt(request.getParameter("commodityPrice")));
+			}
+			if (request.getParameter("commodityNumber") != null && request.getParameter("commodityNumber") != "") {// 更新商品数量
+				commodity.setCommodityNumber(Integer.parseInt(request.getParameter("commodityNumber")));
+			}
+			if (DaoFactory.getCommodityDaoImpl().update(commodity) != 0) {
+				json.put("result", true);
+			} else {
+				json.put("result", false);
+			}
+		} else {
+			json.put("result", false);
 		}
-		if (request.getParameter("commodityImage") != null && request.getParameter("commodityImage") != "") {// 更新商品图片路径
-			commodity.setCommodityImage(request.getParameter("commodityImage"));
-		}
-		if (request.getParameter("commodityIntroduce") != null && request.getParameter("commodityIntroduce") != "") {// 更新商品简介
-			commodity.setCommodityIntroduce(request.getParameter("commodityIntroduce"));
-		}
-		if (request.getParameter("commodityPrice") != null && request.getParameter("commodityPrice") != "") {// 更新商品单价
-			commodity.setCommodityPrice(Integer.parseInt(request.getParameter("commodityPrice")));
-		}
-		if (request.getParameter("commodityNumber") != null && request.getParameter("commodityNumber") != "") {// 更新商品数量
-			commodity.setCommodityNumber(Integer.parseInt(request.getParameter("commodityNumber")));
-		}
-		DaoFactory.getCommodityDaoImpl().update(commodity);
 		PrintWriter writer = response.getWriter();
-		json.put("result", true);
 		writer.print(json);
 	}
 
@@ -200,21 +213,27 @@ public class CommodityServlet extends HttpServlet {
 	protected void queryByID(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int commodityID = 0;
-		if (request.getParameter("commodityID") != null) {
-			commodityID = Integer.parseInt(request.getParameter("commodityID"));
-		}
-		Commodity commodity = DaoFactory.getCommodityDaoImpl().queryByCommodityID(commodityID);
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("application/json; charset=utf-8");
 		JSONObject jsonObject = new JSONObject();
+		if (request.getParameter("commodityID") != "") {
+			commodityID = Integer.parseInt(request.getParameter("commodityID"));
+			if (DaoFactory.getCommodityDaoImpl().queryByCommodityID(commodityID) != null) {
+				Commodity commodity = DaoFactory.getCommodityDaoImpl().queryByCommodityID(commodityID);
+				jsonObject.put("commodityID", commodity.getCommodityID());
+				jsonObject.put("commodityName", commodity.getCommodityName());
+				jsonObject.put("commodityNumber", commodity.getCommodityNumber());
+				jsonObject.put("commodityImage", commodity.getCommodityImage());
+				jsonObject.put("shopID", commodity.getShopID());
+				jsonObject.put("commodityIntroduce", commodity.getCommodityIntroduce());
+				jsonObject.put("commodityPrice", commodity.getCommodityPrice());
+				jsonObject.put("result", true);
+			} else {
+				jsonObject.put("result", false);
+			}
+		} else {
+			jsonObject.put("result", false);
+		}
+
 		PrintWriter writer = response.getWriter();
-		jsonObject.put("commodityID", commodity.getCommodityID());
-		jsonObject.put("commodityName", commodity.getCommodityName());
-		jsonObject.put("commodityNumber", commodity.getCommodityNumber());
-		jsonObject.put("commodityImage", commodity.getCommodityImage());
-		jsonObject.put("shopID", commodity.getShopID());
-		jsonObject.put("commodityIntroduce", commodity.getCommodityIntroduce());
-		jsonObject.put("commodityPrice", commodity.getCommodityPrice());
 		writer.print(jsonObject);
 	}
 }
